@@ -79,7 +79,7 @@ public class RubroServicio {
             throw new MiException(" La descripcion no puede estar vacia, por favor explicar qeu hace este rubro.");
 
         }
-        List <Rubro> rubros = new ArrayList();
+        List <Rubro> rubros = new ArrayList<>();
         rubros = ListaRubros();
                     
           for (Rubro rubro : rubros) { 

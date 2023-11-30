@@ -87,8 +87,8 @@
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email"  th:value="${email}">
 
-                    <label for="precioHora">Precio Hora:</label>
-                    <input type="number" id="precio-hora" name="precioHora"  th:value="${precioHora}">
+                    <label for="precioHora">Precio Hora:</label> 
+                    <input type="number" id="precio-hora" name="precioHora" >
 
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="password"  th:value="${password}">
@@ -96,14 +96,27 @@
                     <label for="confirm-password">Confirmar Contraseña:</label>
                     <input type="password" id="confirm-password" name="password2"   th:value="${password2}">
                     <label for="rubros">Selecciona los rubros:</label><br>
+
+                    <div class="form-group my-3">
+                        <select name="idRubro">
+                            <option th:value=${null}>Seleccionar Rubro</option>
+                            <option th:each="rubro : ${rubros}"
+                                    th:value="${rubro.idRubro}"
+                                    th:text="${rubro.nombreRubro}"
+                                    />
+                        </select>
+                    </div>
+                    
+                     <!--
                     <div class="content-select"> 
-                        <select id="rubros" name="rubros" >
-                        <option th:each="rubro : ${rubros}" th:value="${rubro.nombreRubro}" th:text="${rubro.nombreRubro}"></option>
+                        <select id="rubros" name="idRubro" >
+                        <option th:each="rubro : ${rubros}" th:value="${rubro.idRubro}" name="idRubro" th:text="${rubro.nombreRubro}"></option>
                     </select><br>
-                    <select id="rubros" name="rubros" >
-                        <option th:each="rubro : ${rubros}" th:value="${rubro.nombreRubro}" th:text="${rubro.nombreRubro}"></option>
+                   <select id="rubros" name="rubros" >
+                        <option th:each="rubro : ${rubros}" th:value="${rubro.idRubro}"name="idRubro" th:text="${rubro.nombreRubro}"></option>
                     </select><br>
                     </div>
+                    -->
                     <label for="matricula">Matricula:</label>
                     <input type="text" id="matricula" name="matricula"  th:value="${matricula}">
                     <label for="descripcion">Descripción:</label>
@@ -139,9 +152,6 @@
         </div>
 
 
-
-
-
     </body>
 
     <script > 
@@ -150,10 +160,6 @@
 
         $signUp=document.querySelector('.sign-up'),
         $signIn=document.querySelector('.sign-in');
-
-
-
-
 
         document.addEventListener('click', e=> {
         if(e.target === $btnSignIn || e.target === $btnSignUp){

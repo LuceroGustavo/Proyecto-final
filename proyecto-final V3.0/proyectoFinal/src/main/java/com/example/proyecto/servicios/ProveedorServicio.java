@@ -29,8 +29,8 @@ public class ProveedorServicio {
     @Autowired
     private ImagenServicio imagenServicio;
     
-    @Autowired
-    private RubroServicio rubroServicio; 
+    //@Autowired
+   // private RubroServicio rubroServicio; 
     
     @Transactional
     public void crearProveedor(MultipartFile archivo, String nombre, String apellido, String dni, String telefono, String email, String password,

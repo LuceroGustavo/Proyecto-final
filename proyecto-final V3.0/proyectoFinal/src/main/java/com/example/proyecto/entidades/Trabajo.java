@@ -31,7 +31,7 @@ public class Trabajo {
     private EstadoTrabajo estadoTrabajo;
     private String cometarioTrabajoTerminado;
     private String detalleDeSolicitud;
-
+    private String observacionCancelado;
     private int horasTrabajoEstimadas;// Lo completa el provedor x horas de trabajo
     private int gastosAdicionales;
     private double precioFinal;// este campo se completa con la horas trabajas x precio hora trabajada x el

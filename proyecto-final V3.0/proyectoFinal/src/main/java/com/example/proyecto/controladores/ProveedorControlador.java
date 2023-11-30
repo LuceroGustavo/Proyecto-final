@@ -37,55 +37,47 @@ public class ProveedorControlador {
     @Autowired
     RubroServicio rubroServicio;
 
-    @GetMapping("/registrar")
-    public String registrar( ModelMap modelo) {
-        List <Rubro> rubros = rubroServicio.ListaRubros();
-        modelo.addAttribute("rubros",rubros);
-        
-        return "proveedor_form.html";
-    }
-
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, String apellido, String dni, String telefono,
-            String direccion, String email, String password,String matricula,
-            String idrubro, double precioHora, String descripcion,
+            String direccion, String email, String password, String matricula,
+            double precioHora, String descripcion,
             ModelMap modelo, MultipartFile archivo, String password2, String idRubro) {
-      
+
         try {
             proveedorServicio.crearProveedor(archivo, nombre, apellido, dni, telefono, email,
-                    password, password2, matricula, descripcion, precioHora, direccion, idrubro);
-                             
-                        
+                    password, password2, matricula, descripcion, precioHora, direccion, idRubro);
+
             modelo.put("exito", "El Proveedor fue registrado correctamente!");
         } catch (MiException ex) {
+            
+            List<Rubro> rubros = rubroServicio.ListaRubros();
+            modelo.addAttribute("rubros", rubros);
 
             modelo.put("error", ex.getMessage());
-            return "proveedor_form.html";
+            return "registroDoble.html";
         }
 
         return "index.html";
     }
-    
-      @GetMapping("/listar/{rubro}")
+
+    @GetMapping("/listar/{rubro}")
     public String listar(@PathVariable String rubro, ModelMap modelo) {
-         
-        List <Proveedor> proveedores = new ArrayList();
-        proveedores= proveedorServicio.listarPorRubro(rubro);
-                
-        
+
+        List<Proveedor> proveedores = new ArrayList<>();
+        proveedores = proveedorServicio.listarPorRubro(rubro);
+
         modelo.addAttribute("proveedores", proveedores);
-       
-        
+
         return "proveedor_list.html";
     }
 
     @GetMapping("/")
-    public String verPagInicio(Model modelo,@Param("palabraClave")String palabraClave){
-        List<Proveedor> listProveedors=proveedorServicio.listAll(palabraClave);
-        modelo.addAttribute("listProveedors",listProveedors);
-        modelo.addAttribute("palabraClave",palabraClave);
+    public String verPagInicio(Model modelo, @Param("palabraClave") String palabraClave) {
+        List<Proveedor> listProveedors = proveedorServicio.listAll(palabraClave);
+        modelo.addAttribute("listProveedors", listProveedors);
+        modelo.addAttribute("palabraClave", palabraClave);
 
-    return "index"; 
-    
-}
+        return "index";
+
+    }
 }
