@@ -5,10 +5,12 @@
  */
 package com.example.proyecto.controladores;
 
+import com.example.proyecto.entidades.Comentario;
 import com.example.proyecto.entidades.Proveedor;
 import com.example.proyecto.entidades.Rubro;
 import com.example.proyecto.entidades.Trabajo;
 import com.example.proyecto.excepciones.MiException;
+import com.example.proyecto.servicios.ComentarioServicio;
 import com.example.proyecto.servicios.ProveedorServicio;
 import com.example.proyecto.servicios.RubroServicio;
 import com.example.proyecto.servicios.TrabajoServicio;
@@ -41,7 +43,8 @@ public class ProveedorControlador {
     RubroServicio rubroServicio;
     @Autowired
     TrabajoServicio trabajoServicio;
-   
+      @Autowired
+    ComentarioServicio comentarioServicio;
 
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, String apellido, String dni, String telefono,
@@ -89,7 +92,7 @@ public class ProveedorControlador {
     
     @GetMapping("/listarTrabajo")
     public String listarTrabajo(ModelMap modelo) {
-        
+        //// para ver
         String dniProveedor = "t"; 
         
         List<Trabajo> listaTrabajos = trabajoServicio.listarTrabajoCliente(dniProveedor);
@@ -101,10 +104,13 @@ public class ProveedorControlador {
     
      @GetMapping("/perfil/{dni}")
     public String listarTrabajo(@PathVariable String dni, ModelMap modelo) {
-         System.out.println(dni);
-         System.out.println("--------------");
+     
         Proveedor proveedor =proveedorServicio.getOne(dni);
-                       
+        
+              List<Comentario>comentarios =comentarioServicio.ListaComentariosPorProveedor(dni);
+        
+               modelo.addAttribute("comentarios",comentarios);
+        
         modelo.addAttribute("proveedor",proveedor);
         
         return "Perfil.html";

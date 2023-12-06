@@ -14,7 +14,7 @@
         <main class="container">
             <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
                 <div class="container text-center">
-                <h1 class="display-4 fst-italic" th:text="${proveedor.rubro.nombreRubro}"> 
+                    <h1 class="display-4 fst-italic" th:text="${proveedor.rubro.nombreRubro}"> 
                         <font style="vertical-align: inherit;" >
                         <font style="vertical-align: inherit;"> </font>
                         </font>
@@ -122,16 +122,16 @@
                                 </div>
                             </div>
                         </div>-->
-                      <div class="btn-container">
-                        <a th:href="@{/}">
+                <div class="btn-container">
+                    <a th:href="@{/}">
 
-                            <button class="sign-up-btn" id="ov-btn-slide-close">volver</button>
-                        </a>        
+                        <button class="sign-up-btn" id="ov-btn-slide-close">volver</button>
+                    </a>        
 
                     <a th:href="@{/trabajo/contratar/__${proveedor.dni}__}">
-                            <button class="sign-up-btn" id="ov-btn-slide-close">Contratar</button>
-                        </a>
-                    </div>
+                        <button class="sign-up-btn" id="ov-btn-slide-close">Contratar</button>
+                    </a>
+                </div>
                 <center>
                     <div class="card" th:each="comentario:${comentarios}" id="comentarioID">
                         <div class="card">
@@ -139,115 +139,21 @@
                                 <strong>  Puntuación:
                                     <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
                                 </strong>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${comentario.contenido}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sed possimus minus
-                                    excepturi
-                                    obcaecati voluptates quibusdam id provident ipsum, reprehenderit iusto nobis, temporibus omnis unde ad
-                                    veniam
-                                    voluptatem sunt. Ducimus!
-                                </h5>  
-                                <h5 th:text="${comentario.fechaHora}"> <strong> 19:30hs 29 de mayo 2023</strong> </h5> 
-                            </div>
-                        </div>
-                    </div>
-                </center>
- <center>
-                    <div class="card"  id="comentarioID">
-                        <div class="card">
-                            <div id="rating">
-                                <strong>  Puntuación:
-                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                 <strong th:text="${comentario.calificacion}">  
+                                   
                                 </strong>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title" > Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sed possimus minus
-                                    excepturi
-                                    obcaecati voluptates quibusdam id provident ipsum, reprehenderit iusto nobis, temporibus omnis unde ad
-                                    veniam
-                                    voluptatem sunt. Ducimus!
-                                </h5>  
-                                <h5> <strong> 19:30hs 29 de mayo 2023</strong> </h5> 
-                            </div>
-                        </div>
-                    </div>
-       <div class="card"  id="comentarioID">
-                        <div class="card">
-                            <div id="rating">
-                                <strong>  Puntuación:
-                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                                </strong>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" > Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sed possimus minus
-                                    excepturi
-                                    obcaecati voluptates quibusdam id provident ipsum, reprehenderit iusto nobis, temporibus omnis unde ad
-                                    veniam
-                                    voluptatem sunt. Ducimus!
-                                </h5>  
-                                <h5> <strong> 19:30hs 29 de mayo 2023</strong> </h5> 
-                            </div>
-                        </div>
-                    </div>
-       <div class="card"  id="comentarioID">
-                        <div class="card">
-                            <div id="rating">
-                                <strong>  Puntuación:
-                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                                </strong>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" > Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sed possimus minus
-                                    excepturi
-                                    obcaecati voluptates quibusdam id provident ipsum, reprehenderit iusto nobis, temporibus omnis unde ad
-                                    veniam
-                                    voluptatem sunt. Ducimus!
-                                </h5>  
-                                <h5> <strong> 19:30hs 29 de mayo 2023</strong> </h5> 
-                            </div>
-                        </div>
-                    </div>
-       <div class="card"  id="comentarioID">
-                        <div class="card">
-                            <div id="rating">
-                                <strong>  Puntuación:
-                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                                </strong>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" > Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sed possimus minus
-                                    excepturi
-                                    obcaecati voluptates quibusdam id provident ipsum, reprehenderit iusto nobis, temporibus omnis unde ad
-                                    veniam
-                                    voluptatem sunt. Ducimus!
-                                </h5>  
-                                <h5> <strong> 19:30hs 29 de mayo 2023</strong> </h5> 
-                            </div>
-                        </div>
-                    </div>
-       <div class="card"  id="comentarioID">
-                        <div class="card">
-                            <div id="rating">
-                                <strong>  Puntuación:
-                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
-                                </strong>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" > Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum sed possimus minus
-                                    excepturi
-                                    obcaecati voluptates quibusdam id provident ipsum, reprehenderit iusto nobis, temporibus omnis unde ad
-                                    veniam
-                                    voluptatem sunt. Ducimus!
-                                </h5>  
-                                <h5> <strong> 19:30hs 29 de mayo 2023</strong> </h5> 
+                                <h5 class="card-title" th:text="${comentario.contenido}"></h5>  
+                                <h5 > <strong th:text="${comentario.fechaHora}"> </strong> </h5> 
                             </div>
                         </div>
                     </div>
                 </center>
 
-                
-                
-                
+
+
+
         </main>
     </body>
 

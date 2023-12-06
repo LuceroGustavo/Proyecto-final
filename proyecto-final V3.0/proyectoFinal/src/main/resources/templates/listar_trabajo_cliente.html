@@ -1,134 +1,76 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaft.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/proveedor_list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link Rel="stylesheet" th:href="@{/css/giratorias.css}">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <div><img class="logo" ></div>
-
-
-    
-
-    <div class="boxesContainer">
-        
-        <div class="cardBox">
-            
-            <div class="card">
-             
-                <div class="front">
-                    <!-- contenido front -->
-<img class="logo" src="imagenes/a.jpg">
-<h4>Miguel Gomez<h4>
-    <h5>Tel.: 1120334425<h5>
-        <h6>Domicilio: El Picaflor Nº 3467<h6>
-
-                </div>
-                <div class="back">
-                    <!-- contenido back -->
-                    <br>
-                    <br>
-                    <a href="#" class="ov-btn-grow-skew-reverse">Aceptar</a>
-                    <a href="#" class="ov-btn-grow-skew-reverse">Rechazar</a>
-                    <a href="#" class="ov-btn-grow-skew-reverse">Mensaje</a>
-                    <a href="#" class="ov-btn-grow-skew-reverse">Info</a>
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-    <div class="boxesContainer">
-
-        <div class="cardBox">
-            <div class="card">
-                <div class="front">
-                    <h3>Card One</h3>
-                    <p>Hover to flip</p>
-                    <strong>&#x21bb;</strong>
-                </div>
-                <div class="back">
-                    <h3>Back Side One</h3>
-                    <p>Content in card one</p>
-                    <a href="#">Button 1</a>
+        <section th:each="trabajo : ${trabajos}"class="card">
+ <h1 class="title" th:text="${trabajo.id}"></h1>
+ 
+            <div class="main">
+                
+                <div class="card-content">
+                    <h1 class="title" th:text="${trabajo.estadoTrabajo}"></h1>
+                    <div class="Information">
+                        <div class="animated_text">
+                            <h1 class="title" th:text="${trabajo.detalleDeSolicitud}"></h1>
+                             <h1 class="title" th:text="${trabajo.respuestaProveedor}"></h1>
+                          <!--  <h1 class="title" th:text="${trabajo.cliente.nombre}"></h1> -->
+                        </div>
+                         <!--  
+                        <div>
+                            <h1  th:text="${trabajo.cliente.domicilio}"></h1>
+                            <h2 th:text="${trabajo.cliente.telefono}">></h2>
+                        </div>
+                             -->                 
+                    </div>
+                    
+ 
+                    <div class="btn-container">
+                                                       
+                                 <a th:href="@{/trabajo/aceptar/__${trabajo.id}__}"> 
+                                <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">aceptar</button>
+                                 </a>
+                        
+                            <a th:href="@{/trabajo/rechazar/__${trabajo.id}__}"> 
+                                <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">rechazar</button>
+                                 </a>
+                        
+                          <a th:href="@{/trabajo/comentar/__${trabajo.id}__}"> 
+                                <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">calificar</button>
+                                 </a>
+                        
+                    </div>
+  </form>
                 </div>
             </div>
-        </div>
+        </section> 
 
-        <div class="cardBox">
-            <div class="card">
-                <div class="front">
-                    <h3>Card Two</h3>
-                    <p>Hover to flip</p>
-                    <strong>&#x21bb;</strong>
-                </div>
-                <div class="back">
-                    <h3>Back Side Two</h3>
-                    <p>Content in card two</p>
-                    <a href="#">Button 2</a>
-                </div>
-            </div>
-        </div>
+        <script>
+            var check = document.getElementById("click");
+            var header = document.getElementById("header");
+            var logo = document.getElementById("logo");
+            var menu = document.getElementById("menu");
 
-        <div class="cardBox">
-            <div class="card">
-                <div class="front">
-                    <h3>Card Three</h3>
-                    <p>Hover to flip</p>
-                    <strong>&#x21bb;</strong>
-                </div>
-                <div class="back">
-                    <h3>Back Side Three</h3>
-                    <p>Content in card three</p>
-                    <a href="#">Button 3</a>
-                </div>
-            </div>
-        </div>
+            check.addEventListener("click", () => {
+            if (check.checked) {
+            header.style.backgroundColor = "#02153f";
+            logo.style.color = "#fff";
+            menu.style.color = "#fff";
 
-        <div class="cardBox">
-            <div class="card">
-                <div class="front">
-                    <h3>Card Four</h3>
-                    <p>Hover to flip</p>
-                    <strong>&#x21bb;</strong>
-                </div>
-                <div class="back">
-                    <h3>Back Side Four</h3>
-                    <p>Content in card four</p>
-                    <a href="#">Button 4</a>
-                </div>
-            </div>
-        </div>
+            } else {
+            header.style.backgroundColor = "transparent";
+            logo.style.color = "#02153f";
+            menu.style.color = "#02153f";
 
+            }
+            } );
 
-        <div class="cardBox">
-            <div class="card">
-                <div class="front">
-                    <h3>Card Four</h3>
-                    <p>Hover to flip</p>
-                    <strong>&#x21bb;</strong>
-                </div>
-                <div class="back">
-                    <h3>Back Side Four</h3>
-                    <p>Content in card four</p>
-                    <a href="#">Button 4</a>
-                </div>
-            </div>
-        </div>
+        </script>
 
-
-    </div>
-
-
-
-</body>
-
+    </body>
 </html>

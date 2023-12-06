@@ -40,7 +40,8 @@ return "rubro_form.html";
        //faltan excepciones en el servicio
       //  try {
             rubroServicio.CrearRubro(nombreRubro, descripcion);
-            modelo.put("exito", "El Cliente fue registrado correctamente!");
+            modelo.put("exito", "El Rubro fue registrado correctamente!");
+          //   modelo.put("exito", "El Cliente fue registrado correctamente!");
             /*
         } catch (MiException ex) {
                       

@@ -123,7 +123,8 @@ public void solicitudTrabajo(String dniProveedor, String dniCliente, String deta
         }
     }
     
-    
+    //eliminar idProvedor
+    // proveedor es con dos EE
     @Transactional
     public void finalizadoTrabajo(Long idTrabajo, String idProvedor, Boolean estado) throws MiException {
         Trabajo trabajo = new Trabajo();
@@ -177,19 +178,39 @@ public void solicitudTrabajo(String dniProveedor, String dniCliente, String deta
     public List<Trabajo> listarTrabajoCliente (String dniCliente) {
     
         List<Trabajo> trabajosCliente = new ArrayList<>();
-        
-        trabajosCliente = trabajoRepositorio.findByClienteDni(dniCliente);
-               
+          List<Trabajo> trabajos = trabajoRepositorio.findAll();
+          //esta andando pero no me deja contratar trabajos como proveedor
+       trabajosCliente = trabajoRepositorio.findByClienteDni(dniCliente);
+       /*
+          for (Trabajo trabajo : trabajos) {
+            if(trabajo.getCliente().getDni().equalsIgnoreCase(dniCliente)){
+            trabajosCliente.add(trabajo);
+            }
+        }
+          */     
      return trabajosCliente; 
     }
    
-    public List<Trabajo> listarTrabajoProveedor (String dniProveedor) {
+   public List<Trabajo> listarTrabajoProveedor (String dniProveedor) {
     
         List<Trabajo> trabajosProveedor = new ArrayList<>();
+            List<Trabajo> trabajos = trabajoRepositorio.findAll();
             
-        trabajosProveedor = trabajoRepositorio.findByProveedorDni(dniProveedor);
+            //ver por que no anda este metodo
+      //  trabajosProveedor = trabajoRepositorio.findByProveedorDni(dniProveedor);
+      
+        for (Trabajo trabajo : trabajos) {
+            if(trabajo.getProveedor().getDni().equalsIgnoreCase(dniProveedor)){
+            trabajosProveedor.add(trabajo);
+            }
+        }
+      
             
      return trabajosProveedor; 
     }
     
+      public Trabajo getOne(Long idTrabajo){
+    Trabajo trabajo =trabajoRepositorio.getOne(idTrabajo);
+    return trabajo;
+    }
 }

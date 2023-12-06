@@ -14,6 +14,7 @@
                 <div class="data">
                     <div class="trabajo">
                         <h2>Detalles del Trabajo</h2>
+                        <h1 class="title" th:text="${trabajo.estadoTrabajo}"></h1>
                         <!--   <p>Estado: <span th:text="${trabajo.estadoTrabajo}"></span></p> 
                            <p>Fecha de alta: <span th:text="${trabajo.fechaInicio}"></span></p> -->
                     </div>
@@ -31,19 +32,34 @@
                         <p>Dirección: <span th:text="${proveedor.domicilio}"></span></p>
                         <p>Telefono: <span th:text="${proveedor.telefono}"></span></p>
                     </div>
-                    <p>introduce aqui tu problema, lo mas detallado posible</p>
+                    <h6>DESCRIPCION DE LA SOLICITUD</h6>
+                    <p th:text="${trabajo.detalleDeSolicitud}"></p>
+                    <h6>DESCRIPCION DE LA SOLUCION</h6>
+                    <p th:text="${trabajo.respuestaProveedor}"></p>
+                    <h6>GASTOS ADICIONALES</h6>
+                    <p th:text="${trabajo.GastosAdicionales}"></p>
+                    <h6>HORAS ESTIMADAS</h6>
+                    <p th:text="${trabajo.horasTrabajoEstimadas}"></p>
 
-                    <form id="register-form" th:action="@{/trabajo/registro/}" method="POST">
+
+
+                    <form id="register-form" th:action="@{/trabajo/comentar/}" method="POST">
                         <div class="descripcion">
-                            <input hidden type="text"  name="dniProveedor" th:value="${proveedor.dni}">
-                            <input hidden type="text"  name="dniCliente" th:value="${cliente.dni}">
-                            <input name="detalleDeSolicitud" placeholder="Descripción del trabajo / Horarios disponibles" 
+                            <input hidden type="number" name="idTrabajo" th:value="${trabajo.id}">
+                            <label>INTRODUCE TU CALIFICACION</label>
+                            <input type="number"  name="calificacion" >
+                              <label>INTRODUCE TU COMENTARIO</label>
+                            <input name="contenido" placeholder="comentario del trabajo" 
                                    minlength="15" maxlength="1000" 
                                    style="width: 100%; height: 100px" 
                                    type="text">
                         </div>  
-                        <button type="submit">enviar trabajo</button>
+                        <button type="submit">enviar</button>
                     </form>   
+
+
+
+
                 </div>
             </div>
         </div>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/proveedor_list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+
+        <section th:each="trabajo : ${trabajos}"class="card">
+
+            <div class="main">
+                <div class="card-content">
+   <h1 class="title" th:text="${trabajo.estadoTrabajo}"></h1>
+                    <div class="Information">
+                        <div class="animated_text">
+                            <h1 class="title" th:text="${trabajo.detalleDeSolicitud}"></h1>
+                            <!--  <h1 class="title" th:text="${trabajo.cliente.nombre}"></h1> -->
+                        </div>
+                        <!--  
+                       <div>
+                           <h1  th:text="${trabajo.cliente.domicilio}"></h1>
+                           <h2 th:text="${trabajo.cliente.telefono}">></h2>
+                       </div>
+                        -->                 
+                    </div>
+                    <a th:href="@{/trabajo/presupuestar/__${trabajo.id}__}">                    
+                        <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">presupuestar</button>
+                    </a>
+                </div>
+                </form>
+            </div>
+
+        </section> 
+
+        <script>
+            var check = document.getElementById("click");
+            var header = document.getElementById("header");
+            var logo = document.getElementById("logo");
+            var menu = document.getElementById("menu");
+
+            check.addEventListener("click", () => {
+            if (check.checked) {
+            header.style.backgroundColor = "#02153f";
+            logo.style.color = "#fff";
+            menu.style.color = "#fff";
+
+            } else {
+            header.style.backgroundColor = "transparent";
+            logo.style.color = "#02153f";
+            menu.style.color = "#02153f";
+
+            }
+            } );
+
+        </script>
+
+    </body>
+</html>
