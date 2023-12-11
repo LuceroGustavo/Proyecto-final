@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>ServiceProM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+
+        <section class="card">
+ 
+ 
+            <div class="main">
+                <div class="container">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado del trabajo</th>
+                                            <th scope="col">Detalle</th>
+                                            <th scope="col">Repuesta Proveedor</th>
+                                           
+                                            <th scope="col">Precio Final</th>
+                                            <th scope="col">RUBRO</th>
+                                            <th scope="col">Telefono del Proveedor</th>
+                                            <th scope="col">Nombre del Proveedor</th>
+                                             <th scope="col">Email del Proveedor</th>
+                                              <th scope="col">Iteraccion</th>
+                                             <!--
+                                            <th scope="col">Aceptar</th>
+                                            <th scope="col">Rechazar</th>
+                                            <th scope="col">Calificar</th>
+-->
+                                        </tr>
+                                    </thead>
+                                    <tbody th:each="trabajo : ${trabajos}" class="tbody">
+                                        <tr>
+                                            <th scope="row" th:text="${trabajo.estadoTrabajo}"></th>
+                                            <th scope="row" th:text="${trabajo.detalleDeSolicitud}"></th>
+                                            <td scope="row" th:text="${trabajo.respuestaProveedor}"></td>
+                                            
+                                            <td scope="row" th:text="${trabajo.precioFinal}"></td>
+                                            <td scope="row" th:text="${trabajo.proveedor.rubro.nombreRubro}"></td>
+                                            <td scope="row" th:text="${trabajo.proveedor.telefono}"></td>
+                                                   <td scope="row" th:text="${trabajo.proveedor.nombre}"></td>
+                                                     <td scope="row" th:text="${trabajo.proveedor.email}"></td>
+                                                     
+                                                     
+                                                     <td ><a th:href="@{/trabajo/aceptar/__${trabajo.id}__}"> <button th:if="${trabajo.estadoTrabajo.toString()} == 'REVISION'">Aceptar</button> </a>
+                                            <a  th:href="@{/trabajo/rechazar/__${trabajo.id}__}"><button th:if="${trabajo.estadoTrabajo.toString()} != 'CANCELADO' and ${trabajo.estadoTrabajo.toString()} !='FINALIZADO' and ${trabajo.estadoTrabajo.toString()} !='CALIFICADO'">Cancelar</button> </a>
+                                            <a  th:href="@{/trabajo/comentar/__${trabajo.id}__}"><button th:if="${trabajo.estadoTrabajo.toString()} == 'FINALIZADO' and ${trabajo.estadoTrabajo.toString()} !='CALIFICADO'">Calificar</button> </a></td>
+                                                <!--
+                                            <td ><a th:href="@{/trabajo/aceptar/__${trabajo.id}__}"> <button th:if="${trabajo.estadoTrabajo.toString()} == 'REVISION'">Aceptar</button> </a></td>
+                                            <td><a  th:href="@{/trabajo/rechazar/__${trabajo.id}__}"><button th:if="${trabajo.estadoTrabajo.toString()} != 'CANCELADO'">Cancelar</button> </a></td>
+                                            <td><a  th:href="@{/trabajo/comentar/__${trabajo.id}__}"><button th:if="${trabajo.estadoTrabajo.toString()} == 'FINALIZADO'">Calificar</button> </a></td>
+                                       -->
+                                        </tr>
+                                    </tbody> 
+
+
+                                </table>
+
+               <!-- <div class="card-content">
+                    <h1 class="title" th:text="${trabajo.estadoTrabajo}"></h1>
+                    <div class="Information">
+                        <div class="animated_text">
+                            <h1 class="title" th:text="${trabajo.detalleDeSolicitud}"></h1>
+                             <h1 class="title" th:text="${trabajo.respuestaProveedor}"></h1>
+                             <h1 class="title" th:text="${trabajo.precioFinal}"></h1>
+                             <h1 class="title" th:text="${trabajo.cliente.nombre}"></h1> 
+                        </div>
+                      
+                        <div>
+                            <h1  th:text="${trabajo.cliente.domicilio}"></h1>
+                            <h2 th:text="${trabajo.cliente.telefono}"></h2>
+                        </div>
+                                    
+                    </div>
+                    
+ 
+                    <div class="btn-container">
+                                                       
+                                 <a th:href="@{/trabajo/aceptar/__${trabajo.id}__}"> 
+                                <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">aceptar</button>
+                                 </a>
+                        
+                            <a th:href="@{/trabajo/rechazar/__${trabajo.id}__}"> 
+                                <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">rechazar</button>
+                                 </a>
+                        
+                          <a th:href="@{/trabajo/comentar/__${trabajo.id}__}"> 
+                                <button class="sign-up-btn" id="ov-btn-slide-close" type="submit">calificar</button>
+                                 </a>
+                        
+                    </div>-->
+                </div>
+            </div>
+        </section> 
+
+        <script>
+            var check = document.getElementById("click");
+            var header = document.getElementById("header");
+            var logo = document.getElementById("logo");
+            var menu = document.getElementById("menu");
+
+            check.addEventListener("click", () => {
+            if (check.checked) {
+            header.style.backgroundColor = "#02153f";
+            logo.style.color = "#fff";
+            menu.style.color = "#fff";
+
+            } else {
+            header.style.backgroundColor = "transparent";
+            logo.style.color = "#02153f";
+            menu.style.color = "#02153f";
+
+            }
+            } );
+
+        </script>
+
+    </body>
+</html>

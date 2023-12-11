@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header id="header-index">
+            <div id="logo" >
+                <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
+            </div>
+            <div class="search-box">
+                <form class="search-box">
+                    <input type="text" placeholder=" "/>
+                    <button type="reset"></button>
+                </form>
+            </div>
+            <div id="botones" sec:authorize="hasRole('ADMIN')">
+                <div class="cada-boton">
+                    <a th:href="@{/proveedor/listar}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Proveedores
+                        </button>
+                    </a>
+                </div>
+                 </div>
+                <div id="botones" sec:authorize="hasRole('ADMIN')">
+                    <div class="cada-boton">
+                        <a th:href="@{/clientes/listar}">
+                            <button  type="button" class="btn btn-outline-info">
+                                Clientes
+                            </button>
+                        </a>
+                    </div>
+                     </div>
+
+                    <div id="botones">
+                        <div class="cada-boton">
+                            <a th:href="@{/index1}">
+                                <button  type="button" class="btn btn-outline-info">
+                                    Home
+                                </button>
+                            </a>
+                        </div>         
+                        <br>
+
+                        <div class="cada-boton">
+                            <a th:href="@{/}">
+                                <button  type="button" class="btn btn-outline-info">
+                                    Mis trabajos
+                                </button>
+                            </a>
+                        </div>         
+                        <br>
+
+                        <div class="cada-boton ">
+
+                            <div id="perfil-dropdown">
+                                
+                                    <a>
+                                        <div class="imagen-circulo">
+                                            <div class="cada-boton perfil">                                      
+
+                            
+                            <img <a th:if="${session.usuariosession.imagen != null}" id="logo"  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" class="d-flex align-items-center">
+                                
+                            </a>
+                        </div>
+                                        </div>
+                                    </a>
+                               
+                                <ul id="dropdown-menu">
+                                    <li>
+                                        <a th:href="@{/}" class="btn btn-outline-info">
+                                            <button class="btn btn-outline-info" id="dropdown-btn"> Perfil</button>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/cliente/modificar}" >
+                                            <button class="btn btn-outline-info" id="dropdown-btn"> Modificar Perfil</button>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/}" class="btn btn-outline-info">
+                                            <button class="btn btn-outline-info" id="dropdown-btn"> Logout</button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            </header>
+        
+        
+    <div id="contenedor">
+        <div id="animacion">
+            <h2><b>ServicePro M. </b></h2>
+            <br>
+            <p th:if="${session.usuariosession != null}" th:text=" 'Bienvenido de nuevo Admin '+ ${session.usuariosession.nombre} "> <b></b></p>
+        </div>
+    </div>
+
+    </body>
+</html>

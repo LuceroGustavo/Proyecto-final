@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Enviar SMS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Enviar SMS</h2>
+
+       <form id="register-form" th:action="@{/mensaje/enviar/}" method="POST">
+        <label for="numero">Número de Teléfono:</label>
+        <input type="text" id="phoneNumber" name="numero" placeholder="Ejemplo: +1234567890" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="message" name="mensaje" rows="4" placeholder="Escribe tu mensaje aquí" required></textarea>
+
+        <button type="submit">Enviar SMS</button>
+    </form>
+
+</body>
+</html>

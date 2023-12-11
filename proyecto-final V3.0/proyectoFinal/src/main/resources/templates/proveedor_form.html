@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/registro.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <form id="register-form-prveedor" th:action="@{/proveedor/registro/}" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required th:value="${nombre}"><br>
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required th:value="${apellido}"><br>
+
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required th:value="${dni}"><br>
+            <!-- loco te falto matricula telefono direccion:(  -->
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required th:value="${direccion}"><br>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required th:value="${telefono}"><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required th:value="${email}"><br>
+
+            <label for="precio-hora">Precio Hora:</label>
+            <input type="number" id="precio-hora" name="precioHora" required th:value="${precioHora}"><br>
+            <!-- variable precio-hora???? :(  -->
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required th:value="${password}"><br>
+
+            <label for="confirm-password">Confirmar Contraseña:</label>
+            <input type="password" id="confirm-password" name="password2"  required th:value="${password2}"><br>
+
+            <label>Selecciona los rubros:</label><br>
+            <div th:each="rubro : ${rubros}">
+                <input type="checkbox" th:value="${rubro.idRubro}" name="idrubro" id="${'rubro-' + rubro.nombreRubro}">
+                <label th:for="${'rubro-' + rubro.nombreRubro}" th:text="${rubro.nombreRubro}"></label><br>
+            </div><br>
+
+            <label for="matricula">Matricula:</label>
+            <input type="text" id="matricula" name="matricula" required th:value="${matricula}"><br>
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" required th:value="${descripcion}"><br>
+            <input type="submit" value="RegistrarProveedor">
+        </form>
+    <div class="input-group mb-3">   <!-- para poner una imagen en el html-->
+                    <span class="input-group-text" id="basic-addon1"><strong>Imagen:</strong></span>
+                    <input type="file" class="form-control" name="archivo" placeholder="selecciona una imagen"  aria-describedby="basic-addon1">
+                </div>
+          
+    </body>
+</html>
+
