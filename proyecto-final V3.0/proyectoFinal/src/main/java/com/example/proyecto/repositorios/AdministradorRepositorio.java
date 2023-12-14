@@ -10,6 +10,8 @@ import com.example.proyecto.entidades.Administrador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+
+//SE USA????
 @Repository
 public interface AdministradorRepositorio extends JpaRepository<Administrador, String>{
     

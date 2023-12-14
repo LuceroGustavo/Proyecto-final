@@ -1,0 +1,731 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+  }
+  body{
+   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(/imagenes/fondo-login.jpg) center center no-repeat;
+}
+ #header-index {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centra verticalmente los elementos */
+  padding: 0px 80px 10px 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px; /* Ajusta la altura de la navbar */
+  margin-top: 0.1px;
+}
+
+#botones {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  margin-right: 20px;
+}
+
+#logo {
+  flex: 1; /* Hace que el logo ocupe todo el espacio disponible a la izquierda */
+}
+
+
+#logo>img{
+    margin: -25px;
+    height: 110px;
+}
+#presentacion{
+    text-align: center;
+}
+
+
+.cada-boton{
+   
+    margin-left: 13px;
+}
+.btn-outline-info {
+    color: #0dcaf0; 
+    border-color: #0dcaf0;
+    width:100px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: transparent;
+   font-family: sans-serif;
+   font-size: 15px;
+  
+       
+}
+
+.btn-outline-info:hover {
+    background-color: #0dcaf0; 
+    color: black;
+    cursor: pointer;
+}
+.perfil-container {
+    background: #fff;   /*fondo de abajo*/
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;   /*ancho*/
+    transition: transform 0.3s ease-in-out;
+    margin: 35px;
+    height: 600px;
+    margin-top: 102px;
+
+}
+
+.perfil-container:hover {
+    transform: scale(1.2);  
+    
+}
+
+.perfil-header {
+    text-align: center;
+    padding-top: 10px;
+    background: linear-gradient(to bottom, #F14770, #2980b9);   /*color 1 y 2 del perfil*/
+
+    color: #fff; /*color de letra*/
+}
+
+.foto-perfil {
+    width: 150px;    /*tamaño*/
+    height: 150px;
+    background: #fff; /* Puedo cambiar esto por  imagen de perfil */
+    border-radius: 50%;
+    margin: 0 auto 5px;    /*imagen redonda*/
+    overflow:hidden;     /*oculta las parte q supera el radio*/
+}
+.foto-perfil img{
+    width:100%;
+    height: 100%;
+    object-fit:cover;   /*ajusto dentro del contenedor*/ 
+}
+h1 {
+    margin: 10px 0 5px;
+    
+}
+#rating{
+    width: 200px;
+    height: 60px
+}
+#rating {
+    display: flex; /* Utilizar flexbox para alinear elementos horizontalmente */
+    align-items: center; /* Alinear elementos verticalmente en el centro */
+}
+
+#rating p {
+    margin-right: 10px; /* Ajustar el espacio entre el texto y las estrellas */
+}
+
+#rating span {
+    font-size: 24px; /* Ajustar el tamaño de las estrellas según tus necesidades */
+    margin-right: 5px; /* Ajustar el espacio entre las estrellas */
+}
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.perfil-info {
+    padding: 20px;
+    margin-top: 1px;
+}
+
+.perfil-info p {
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+a {
+    color: #F14770;   /*color de links*/
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #2070a0;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 14px;
+  padding: 5px 3px;
+  text-align: center;
+  height: 30px;
+}
+
+
+footer a {
+    color: white;
+    text-decoration: none; 
+}
+
+footer a:hover {
+    text-decoration: underline; 
+}
+
+
+footer a[href="#"] {
+    text-decoration: none; 
+    color: #6c757d; 
+    display: inline-block; 
+    transition: all 0.3s ease-in-out; 
+}
+
+footer a[href="#"]:hover {
+    color: #000;
+    transform: translateY(-3px); 
+}
+
+.search-box {
+  font-size: 20px;
+  border: solid 1px #0dcaf0;
+  display: inline-block;
+  position: relative;
+  border-radius: 2.5em;
+}
+.search-box input[type=text] {
+  font-family: inherit;
+  font-weight: bold;
+  width: 2.5em;
+  height: 2.5em;
+  padding: 0.3em 2.1em 0.3em 0.4em;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 2.5em;
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+}
+.search-box input[type=text]:focus {
+  outline: none;
+}
+.search-box input[type=text]:focus, .search-box input[type=text]:not(:placeholder-shown) {
+  width: 18em;
+  transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.search-box input[type=text]:focus + button[type=reset], .search-box input[type=text]:not(:placeholder-shown) + button[type=reset] {
+  transform: rotate(-45deg) translateY(0);
+  transition: transform 150ms ease-out 800ms;
+}
+.search-box input[type=text]:focus + button[type=reset]:after, .search-box input[type=text]:not(:placeholder-shown) + button[type=reset]:after {
+  opacity: 1;
+  transition: top 150ms ease-out 950ms, right 150ms ease-out 950ms, opacity 150ms ease 950ms;
+}
+.search-box button[type=reset] {
+  background-color: transparent;
+  width: 1.4em;
+  height: 1.4em;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0.55em;
+  right: 0.55em;
+  transform: rotate(-45deg) translateY(2.2em);
+  transition: transform 150ms ease-out 150ms;
+}
+.search-box button[type=reset]:before, .search-box button[type=reset]:after {
+  content: "";
+  background-color: #0dcaf0;
+  width: 0.3em;
+  height: 1.4em;
+  position: absolute;
+}
+.search-box button[type=reset]:after {
+  transform: rotate(90deg);
+  opacity: 0;
+  transition: transform 150ms ease-out, opacity 150ms ease-out;
+}
+#dropdown-menu {
+    width: 100px;
+    box-shadow: none;
+    border-radius: 25px 10px 10px 5px;
+    display: none; /* Inicialmente ocultar el menú */
+    position: absolute;
+    border-right: 0px;
+    margin-right: 110px;
+    top: 50px; /* Ajusta la distancia desde la parte superior */
+    right: 0; /* Ajusta la distancia desde la derecha */
+   background-color: rgba(0,0,0,0.5);
+    border:0px 0px 0px 0px;
+    list-style: none;
+    padding-right: 0px;
+    padding: 0px 0px 0px 0px;
+    z-index: 1; /* Asegura que esté encima del resto del contenido */
+}
+
+
+#perfil-dropdown:hover #dropdown-menu {
+    display: block; /* Mostrar el menú al hacer hover sobre el contenedor */
+}
+.imagen-circulo #logo{
+  margin-top: -24px;
+  width: 60px; 
+  height: 60px;
+  background-color: #0dcaf0;
+  border-radius: 50%;
+  
+}
+
+tbody{
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.table {
+  position: relative;
+
+border-collapse: separate; /* Separación de bordes */
+border-spacing: 5px; /* Espacio entre celdas */
+font-size: 20px; /* Tamaño de fuente */
+border-radius: 10px; /* Radio de los bordes */
+background-color: rgba(0, 0, 0, 0.5); /* Color de fondo con transparencia */
+color: #fff;
+}
+
+.table td, .table th {
+padding: 8px;
+}
+
+
+.table td, .table th {
+  padding: 8px;
+}
+
+.texto-negro{
+    color: black;
+}
+
+
+
+
+.ov-btn-grow-spin {
+    background: #1d90bb; /* color de fondo */
+    color: white; /* color de fuente */
+   
+    padding: 10px 16px;
+    border-radius: 60px; /* redondear bordes */
+    position: relative;
+   border: 0;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .ov-btn-grow-spin:hover {
+    color: white;/* color de fuente hover */
+  }
+  .ov-btn-grow-spin::after {
+    content: "";
+        background: linear-gradient(to bottom, #F14770, #2980b9);   /*color 1 y 2 del perfil*/
+
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(0, 0) rotate(-180deg);
+    transition: all 0.3s ease;
+  }
+  .ov-btn-grow-spin:hover::after {
+    transition: all 0.3s ease-out;
+    transform: scale(1, 1) rotate(0deg);
+  }
+  
+  #rating{
+      color:#f1d60d;
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+body{
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(/imagenes/fondo-login.jpg) center center no-repeat;
+}
+#header-index {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 0px 80px 10px 55px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px; /* Ajusta la altura de la navbar */
+    margin-top: 0.1px;
+}
+
+#botones {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    margin-right: 20px;
+}
+
+#logo {
+    flex: 1; /* Hace que el logo ocupe todo el espacio disponible a la izquierda */
+}
+
+
+#logo>img{
+    margin: -25px;
+    height: 110px;
+}
+#presentacion{
+    text-align: center;
+}
+
+
+.cada-boton{
+
+    margin-left: 13px;
+}
+.btn-outline-info {
+    color: #0dcaf0; 
+    border-color: #0dcaf0;
+    width:100px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: transparent;
+    font-family: sans-serif;
+    font-size: 15px;
+
+
+}
+
+.btn-outline-info:hover {
+    background-color: #0dcaf0; 
+    color: black;
+    cursor: pointer;
+}
+.perfil-container {
+    background: #fff;   /*fondo de abajo*/
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 250px;
+    transition: transform 0.3s ease-in-out;
+    margin: 35px;
+    height: 450px;
+    margin-top: 102px;
+
+}
+
+.perfil-container:hover {
+    transform: scale(1.2);   
+}
+
+.perfil-header {
+    text-align: center;
+    padding-top: 10px;
+    /*background: linear-gradient(to bottom, #F14770, #2980b9);   /*color 1 y 2 del perfil*/ 
+    background: linear-gradient(to bottom, #00cccc, #2980b9);
+    color: #fff; /*color de letra*/
+}
+
+.foto-perfil {
+    background-image: url(https://iili.io/JIXQgcB.jpg);
+    width: 150px;
+    height: 150px;
+    background: #fff; /* Puedo cambiar esto por  imagen de perfil */
+    border-radius: 50%;
+    margin: 0 auto 5px;
+}
+
+h1 {
+    margin: 10px 0 5px;
+
+}
+
+.perfil-info {
+    padding: 20px;
+    margin-top: 1px;
+}
+
+.perfil-info p {
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+a {
+    color: #F14770;   /*color de links*/
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #2070a0;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 14px;
+    padding: 5px 3px;
+    text-align: center;
+    height: 30px;
+}
+
+
+footer a {
+    color: white;
+    text-decoration: none; 
+}
+
+footer a:hover {
+    text-decoration: underline; 
+}
+
+
+footer a[href="#"] {
+    text-decoration: none; 
+    color: #6c757d; 
+    display: inline-block; 
+    transition: all 0.3s ease-in-out; 
+}
+
+footer a[href="#"]:hover {
+    color: #000;
+    transform: translateY(-3px); 
+}
+
+.search-box {
+    font-size: 20px;
+    border: solid 1px #0dcaf0;
+    display: inline-block;
+    position: relative;
+    border-radius: 2.5em;
+}
+.search-box input[type=text] {
+    font-family: inherit;
+    font-weight: bold;
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0.3em 2.1em 0.3em 0.4em;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 2.5em;
+    transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 150ms;
+}
+.search-box input[type=text]:focus {
+    outline: none;
+}
+.search-box input[type=text]:focus, .search-box input[type=text]:not(:placeholder-shown) {
+    width: 18em;
+    transition: width 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.search-box input[type=text]:focus + button[type=reset], .search-box input[type=text]:not(:placeholder-shown) + button[type=reset] {
+    transform: rotate(-45deg) translateY(0);
+    transition: transform 150ms ease-out 800ms;
+}
+.search-box input[type=text]:focus + button[type=reset]:after, .search-box input[type=text]:not(:placeholder-shown) + button[type=reset]:after {
+    opacity: 1;
+    transition: top 150ms ease-out 950ms, right 150ms ease-out 950ms, opacity 150ms ease 950ms;
+}
+.search-box button[type=reset] {
+    background-color: transparent;
+    width: 1.4em;
+    height: 1.4em;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0.55em;
+    right: 0.55em;
+    transform: rotate(-45deg) translateY(2.2em);
+    transition: transform 150ms ease-out 150ms;
+}
+.search-box button[type=reset]:before, .search-box button[type=reset]:after {
+    content: "";
+    background-color: #0dcaf0;
+    width: 0.3em;
+    height: 1.4em;
+    position: absolute;
+}
+.search-box button[type=reset]:after {
+    transform: rotate(90deg);
+    opacity: 0;
+    transition: transform 150ms ease-out, opacity 150ms ease-out;
+}
+#perfil-dropdown {
+    position: relative; /* Establece el contexto de posición para el menú */
+    display: inline-block; /* Asegura que el contenedor abarque solo el tamaño necesario */
+}
+
+#dropdown-menu {
+    width: 100px;
+    box-shadow: none;
+    border-radius: 25px 10px 10px 5px;
+    display: none;
+    position: absolute; /* Fija la posición del menú */
+    top: calc(100% - 5px); /* Posiciona el menú justo debajo del contenedor */
+    left: 50%; /* Alinea el menú al centro */
+    transform: translateX(-50%); /* Centra el menú horizontalmente */
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+
+
+#perfil-dropdown:hover #dropdown-menu {
+    display: block; /* Mostrar el menú al hacer hover sobre el contenedor */
+}
+ .imagen-circulo {
+    position: relative; /* Establece el contexto de posicionamiento */
+}
+.imagen-circulo #logo{
+    margin-top: -24px;
+    width: 60px; 
+    height: 60px;
+    background-color: #0dcaf0;
+    border-radius: 50%;
+   
+
+}
+
+tbody{
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.table {
+    position: relative;
+
+    border-collapse: separate; /* Separación de bordes */
+    border-spacing: 5px; /* Espacio entre celdas */
+    font-size: 20px; /* Tamaño de fuente */
+    border-radius: 10px; /* Radio de los bordes */
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo con transparencia */
+    color: #fff;
+}
+
+.table td, .table th {
+    padding: 8px;
+}
+
+
+.table td, .table th {
+    padding: 8px;
+}
+
+/* Ajustes para el formulario */
+#reister-form-cliente {
+    margin: 20px; /* Modifica el margen exterior del formulario */
+    padding: 20px; /* Agrega espacio interno al formulario */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 20px;
+    max-width: 300px; /* Ajusta el ancho máximo del formulario */
+}
+
+/* Ajustes para los elementos del formulario */
+#reister-form-cliente label,
+#reister-form-cliente input,
+#reister-form-cliente .form-group {
+    margin-bottom: 15px; /* Agrega espacio entre los elementos del formulario */
+}
+
+#reister-form-cliente input[type="submit"] {
+    margin-top: 15px; /* Agrega espacio encima del botón de enviar */
+}
+
+/* Estilo específico para el input de tipo file */
+#reister-form-cliente input[type="file"] {
+    margin-top: 15px; /* Ajusta el espacio encima del input file */
+}
+

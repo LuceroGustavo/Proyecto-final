@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/comentario_list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+        
+         <!-- 
+         <header id="header-index">
+                <div id="logo" >
+                    <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
+                </div>
+             
+             <div id="botones" sec:authorize="hasRole('ADMIN')">
+                    <div class="cada-boton">
+                        <a th:href="@{/proveedor/listar}">
+                            <button  type="button" class="btn btn-outline-info">
+                               Proveedores
+                            </button>
+                        </a>
+                    </div>
+                 <div id="botones" sec:authorize="hasRole('ADMIN')">
+                    <div class="cada-boton">
+                        <a th:href="@{/clientes/listar}">
+                            <button  type="button" class="btn btn-outline-info">
+                               Clientes
+                            </button>
+                        </a>
+                    </div>  
+
+                <div id="botones">
+                    <div class="cada-boton">
+                        <a th:href="@{/admin/dashboard}">
+                            <button  type="button" class="btn btn-outline-info">
+                               Home
+                            </button>
+                        </a>
+                    </div>         
+<br>
+ 
+                   
+
+                    <div class="cada-boton">
+                    <!--    <a th:href="@{/admin/__${admin.dni}__}"> -->
+                    <!--        <button type="button" class="btn btn-outline-info">
+                            Perfil
+                        </button>
+                    </a>
+                    </div>
+<br>
+
+                    <div class="cada-boton">
+                        <a th:href="@{/}">
+                        <button type="button" class="btn btn-outline-info">
+                            Logout
+                        </button>
+                    </a>
+                    </div>
+                </div>
+            </header>
+        -->
+        
+        
+        <div class="container">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Detalle</th>
+                            <th scope="col">Cliente</th>
+                             <th scope="col">Foto</th>
+                            <th scope="col">Dirigido a Proveedor</th>
+                                          <th scope="col">Foto</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col"sec:authorize="hasRole('ADMIN')">Eliminar Comentario</th>
+
+                        </tr>
+                    </thead>
+                    <tbody th:each="comentario:${comentarios}">
+                        <tr>
+                            <th scope="row" th:text="${comentario.contenido}"></th>
+                            <th scope="row" th:text="${comentario.trabajo.cliente.nombre + ' ' + comentario.trabajo.cliente.apellido}" </th>
+                            <th scope="row">  <img th:src="@{/imagen/perfil/__${comentario.trabajo.cliente.dni}__}" alt="Foto cliente"></th>
+                            <th scope="row" th:text="${comentario.trabajo.proveedor.nombre + ' ' + comentario.trabajo.proveedor.apellido}"></th>
+                           <th scope="row">   <img th:src="@{/imagen/perfil/__${comentario.trabajo.proveedor.dni}__}" alt="Foto proveedor"></th>
+                            <td scope="row" th:text="${comentario.fechaHora}"></td>
+                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/comentario/eliminar/__${comentario.id}__}"><button class="btn-outline-info">Eliminar</button> </a></td>
+
+                        </tr>
+                    </tbody> 
+
+
+                </table>
+
+
+
+            </div>
+        
+        
+        <footer th:replace="/fragments/footer :: footer" ></footer> 
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/comentario_list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+       
+        <div class="container">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre y Apellido</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col" sec:authorize="hasRole('ADMIN')">Editar Cliente</th>
+                            <th scope="col"sec:authorize="hasRole('ADMIN')">Eliminar Cliente</th>
+
+                        </tr>
+                    </thead>
+                    <tbody th:each="cliente:${clientes}">
+                        <tr>
+                            <th scope="row"> <img th:src="@{/imagen/perfil/__${cliente.dni}__}" alt="Foto proveedor"></th>
+                            
+                                                         
+                            <th scope="row" th:text="${cliente.nombre + ' ' + cliente.apellido}"></th>
+                            <td scope="row" th:text="${cliente.email}"></td>
+                            <td scope="row" th:text="${cliente.telefono}"></td>
+                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/cliente/modificar/__${cliente.dni}__}"><button class="btn-outline-info" >Modificar</button> </a></td>
+                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/cliente/eliminar/__${cliente.dni}__}"><button class="btn-outline-info">Eliminar</button> </a></td>
+
+                        </tr>
+                    </tbody> 
+
+
+                </table>
+
+
+
+            </div>
+        
+        
+        <footer th:replace="/fragments/footer :: footer" ></footer> 
+    </body>
+</html>

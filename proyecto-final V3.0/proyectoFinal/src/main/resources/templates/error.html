@@ -1,0 +1,97 @@
+!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaft.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Evita que el video se desborde en la parte inferior */
+            position: relative;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1; /* Hace que el video esté detrás de todo */
+        }
+
+        .error-container {
+            text-align: center;
+            z-index: 1; /* Hace que el contenido esté delante del video */
+        }
+
+        .error-code {
+            font-size: 150px;
+            color: #e74c3c; /* Color rojo */
+            margin: 0;
+        }
+
+        .error-message {
+            font-size: 24px;
+            color: #ebe2e2;
+            margin: 10px 0;
+        }
+
+        .back-home {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db; /* Color azul */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-home:hover {
+            background-color: #2980b9; /* Color azul más oscuro al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    
+
+    
+    
+    <video autoplay muted loop>
+        <source th:src="@{/video/s.mp4}" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+    </video>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <div class="error-container">
+        <p class="error-code" th:text="'Error ' + ${codigo}"></p>
+        <h3 class="error-message">Página no encontrada Sokete</h3>
+         <h3 class="error-message" th:text="${mensaje}"></h3>
+        <a href="/inicio" class="back-home">Volver a la página de inicio</a>
+    </div>
+</body>
+</html>
+
+   

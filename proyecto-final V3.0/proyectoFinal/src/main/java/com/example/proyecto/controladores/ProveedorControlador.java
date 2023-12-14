@@ -1,19 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.proyecto.controladores;
 
+import com.example.proyecto.entidades.Comentario;
+import com.example.proyecto.entidades.Persona;
 import com.example.proyecto.entidades.Proveedor;
 import com.example.proyecto.entidades.Rubro;
+import com.example.proyecto.entidades.Trabajo;
 import com.example.proyecto.excepciones.MiException;
+import com.example.proyecto.servicios.ComentarioServicio;
 import com.example.proyecto.servicios.ProveedorServicio;
 import com.example.proyecto.servicios.RubroServicio;
+import com.example.proyecto.servicios.TrabajoServicio;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -36,56 +38,188 @@ public class ProveedorControlador {
     ProveedorServicio proveedorServicio;
     @Autowired
     RubroServicio rubroServicio;
+    @Autowired
+    TrabajoServicio trabajoServicio;
+    @Autowired
+    ComentarioServicio comentarioServicio;
 
-    @GetMapping("/registrar")
-    public String registrar( ModelMap modelo) {
-        List <Rubro> rubros = rubroServicio.ListaRubros();
-        modelo.addAttribute("rubros",rubros);
-        
-        return "proveedor_form.html";
-    }
-
+    //  falta el campo descripcion!!!!!!!!!!!!!
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, String apellido, String dni, String telefono,
-            String direccion, String email, String password,String matricula,
-            String idrubro, double precioHora, String descripcion,
+    public String registro(String validador, String nombre, String apellido, String dni, String telefono,
+            String direccion, String email, String password, String matricula,
+            Double precioHora, String descripcion,
             ModelMap modelo, MultipartFile archivo, String password2, String idRubro) {
-      
         try {
-            proveedorServicio.crearProveedor(archivo, nombre, apellido, dni, telefono, email,
-                    password, password2, matricula, descripcion, precioHora, direccion, idrubro);
-                             
-                        
-            modelo.put("exito", "El Proveedor fue registrado correctamente!");
+
+            proveedorServicio.validar3(precioHora, idRubro, matricula,descripcion);
+
+            modelo.put("exito", "COMPLETA TUS DATOS PERSONALES PARA CONTINUAR");
+            modelo.put("validador", validador);
+            modelo.put("precioHora", precioHora);
+            modelo.put("matricula", matricula);
+            modelo.put("idRubro", idRubro);
+
+            return "registroDoble.html";
+
         } catch (MiException ex) {
 
+            List<Rubro> rubros = rubroServicio.ListaRubros();
+            modelo.addAttribute("rubros", rubros);
+
+            modelo.put("validador", validador);
+            modelo.put("precioHora", precioHora);
+            modelo.put("matricula", matricula);
+            modelo.put("idRubro", idRubro);
+
             modelo.put("error", ex.getMessage());
-            return "proveedor_form.html";
+            return "registroDoble.html";
         }
 
-        return "index.html";
     }
-    
-      @GetMapping("/listar/{rubro}")
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_ADMIN','ROLE_PROVEEDOR')")
+    @GetMapping("/listar/{rubro}")
     public String listar(@PathVariable String rubro, ModelMap modelo) {
-         
-        List <Proveedor> proveedores = new ArrayList();
-        proveedores= proveedorServicio.listarPorRubro(rubro);
-                
-        
+
+        List<Proveedor> proveedores = new ArrayList<>();
+        proveedores = proveedorServicio.listarPorRubro(rubro);
+
         modelo.addAttribute("proveedores", proveedores);
-       
-        
-        return "proveedor_list.html";
+
+        return "proveedor_list2.html";
     }
 
     @GetMapping("/")
-    public String verPagInicio(Model modelo,@Param("palabraClave")String palabraClave){
-        List<Proveedor> listProveedors=proveedorServicio.listAll(palabraClave);
-        modelo.addAttribute("listProveedors",listProveedors);
-        modelo.addAttribute("palabraClave",palabraClave);
+    public String verPagInicio(Model modelo, @Param("palabraClave") String palabraClave) {
+        List<Proveedor> listProveedors = proveedorServicio.listAll(palabraClave);
+        modelo.addAttribute("listProveedors", listProveedors);
+        modelo.addAttribute("palabraClave", palabraClave);
 
-    return "index"; 
+        return "index.html";
+
+    }
+
+    @GetMapping("/listarTrabajo")
+    public String listarTrabajo(ModelMap modelo, HttpSession session) {
+
+        Persona proveedor = (Persona) session.getAttribute("usuariosession");
+        List<Trabajo> trabajos = trabajoServicio.listarTrabajoProveedor(proveedor.getDni());
+        modelo.addAttribute("trabajos", trabajos);
+
+        return "listar_trabajo_proovedor.html";
+    }
+
+    @GetMapping("/perfil/{dni}")
+    public String listarTrabajo(@PathVariable String dni, ModelMap modelo) {
+
+        Proveedor proveedor = proveedorServicio.getOne(dni);
+
+        List<Comentario> comentarios = comentarioServicio.ListaComentariosPorProveedor(dni);
+
+        modelo.addAttribute("comentarios", comentarios);
+
+        modelo.addAttribute("proveedor", proveedor);
+
+        return "perfilProveedor.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_PROVEEDOR', 'ROLE_ADMIN')")
+    @GetMapping("/perfil")
+    public String perfil(ModelMap modelo, HttpSession session) {
+        Proveedor proveedor = (Proveedor) session.getAttribute("personasession");
+        modelo.put("proveedor", proveedor);
+        return "proveedor_modificar.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_PROVEEDOR', 'ROLE_ADMIN')")
+    @GetMapping("/modificarProveedor")
+    public String perfil2(ModelMap modelo, HttpSession session) {
+        Persona persona = (Proveedor) session.getAttribute("usuariosession");
+        if (persona instanceof Proveedor) {
+            Proveedor proveedor = (Proveedor) persona;
+            modelo.put("proveedor", proveedor);
+            return "modificarProvedor.html";
+        } else {
+            System.out.println("error aquiiiii");
+            // Manejar el caso en que la instancia no sea de tipo Cliente
+            // Puedes redirigir a una página de error o manejar de otra manera
+            return "index1";
+        }
+
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_ADMIN','ROLE_PROVEEDOR')")
+    @PostMapping("/modificado")
+    public String modificaPersonales(String dni, String nombre,
+            MultipartFile archivo, String apellido, String telefono,
+            String matricula, Double precioHora, String descripcion, String idRubro,
+            String email, String domicilio, ModelMap modelo, String validador , HttpSession session) {
+
+       
+        try {
+             Proveedor proveedorActualizado = proveedorServicio.getOne(dni);
+     session.setAttribute("usuariosession", proveedorActualizado);
+
+            proveedorServicio.modificar(archivo, nombre, apellido, dni, telefono, email, domicilio);
+            modelo.put("exito", "Proveedor actualizado correctamente!");
+          
+
+        } catch (MiException ex) {
+ List<Rubro> rubros = rubroServicio.ListaRubros();
+            modelo.addAttribute("rubros", rubros);
+            modelo.put("verificador", 2);
+           Proveedor proveedor = proveedorServicio.getOne(dni);
+            modelo.put("cliente", proveedor);
+              modelo.put("error", ex.getMessage());
+            return "modificarDatos.html";
+        }
+         List<Rubro> rubros = rubroServicio.ListaRubros();
+            modelo.addAttribute("rubros", rubros);
+  return "index1.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_ADMIN','ROLE_PROVEEDOR')")
+    @PostMapping("/modificado1")
+    public String modificado1(String dni, String nombre,
+            MultipartFile archivo, String apellido, String telefono,
+            String matricula, Double precioHora, String descripcion, String idRubro,
+            String email, String domicilio, ModelMap modelo, String validador) {
+
+        try {
+            proveedorServicio.modificarOficio(dni, matricula, descripcion, precioHora, idRubro);
+            
+            modelo.put("exito", "Oficio actualizado correctamente!");
+        } catch (MiException ex) {
+            
+            
+ List<Rubro> rubros = rubroServicio.ListaRubros(); 
+            modelo.addAttribute("rubros", rubros);
+            modelo.put("verificador", 2);
+                     
+            
+            modelo.put("precioHora", precioHora);
+            modelo.put("matricula", matricula);
+            modelo.put("idRubro", idRubro);
+            modelo.put("validador", validador);
+            modelo.put("descripcion", descripcion);
+            modelo.put("error", ex.getMessage());
+            return "modificarDatos.html";
+        }
+         List<Rubro> rubros = rubroServicio.ListaRubros();
+            modelo.addAttribute("rubros", rubros);
+        return "index1.html";
+    }
     
-}
+    
+    
+      @PreAuthorize("hasAnyRole('ROLE_CLIENTE','ROLE_ADMIN','ROLE_PROVEEDOR')")
+    @GetMapping("/listarAdmin")
+    public String listarAdmin(ModelMap modelo) {
+        
+        List<Proveedor> proveedores = proveedorServicio.listarProveedores();
+
+        modelo.addAttribute("proveedores", proveedores);
+
+        return "proveedor_list_admin.html";
+    }
 }

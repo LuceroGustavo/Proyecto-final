@@ -1,0 +1,139 @@
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/styloPerfilProveedor.css" th:href="@{/css/styloPerfilProveedor.css}">
+
+        <title>Perfil Personalizado</title>
+    </head>
+    <body>
+
+        <div>
+
+            <div class="profile-container">
+                <br>  <br>  <br>  <br>  <br>  <br>
+
+                <div class="profile-header">
+                    <img th:src="@{/imagenes/p.jpg}" alt="Tu Foto de Perfil">
+                    <h1  th:text="${proveedor.rubro.nombreRubro}"> </h1>
+                    <h1 th:text="${proveedor.nombre + ' ' + proveedor.apellido}"></h1>
+                    <br>
+                    <p th:text="${proveedor.descripcion}"></p>               
+                </div>
+
+
+                <div class="carousel-container">
+                    <div class="carousel-images">
+                        <img class="carousel-image" th:src="@{/imagenes/f.avif}" alt="Imagen 1">
+                        <img class="carousel-image" th:src="@{/imagenes/g.avif}" alt="Imagen 2">
+                        <img class="carousel-image" th:src="@{/imagenes/h.jpg}" alt="Imagen 3">  
+                    </div>
+                </div>
+
+
+
+                <div class="profile-details">
+                    <center><u><h2>Más Detalles</h2></u> </center>
+                    <center>  <ul>
+
+                            <li th:text="'Matricula: '+ ${proveedor.matricula}"> </li>
+                            <li th:text="'Telefono: '+${proveedor.telefono}"></li>
+                            <li th:text="'Email: '+${proveedor.email}"></li>
+                            <li th:text="'Domicilio: '+${proveedor.domicilio}"></li>
+                            <li th:text="'Telefono: '+${proveedor.telefono}"></li>
+                        </ul></center>
+                    <br>
+
+
+                    <center> <a th:href="@{/trabajo/contratar/__${proveedor.dni}__}" class="ov-btn-grow-box">contratar</a>
+
+                        <a th:href="@{/}" class="ov-btn-grow-box">Volver</a></center>
+
+
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+            </div>
+
+
+            <center>
+                <div class="card" th:each="comentario:${comentarios}" id="comentarioID">
+                    <div class="card">
+                        <div id="rating">
+                            <strong>  CALIFICACION </strong> <br>
+                            <strong th:if="${comentario.calificacion==1}"> 
+                                <span>&#9733;</span>
+                            </strong>
+
+                            <strong th:if="${comentario.calificacion==2}">  
+                                <span>&#9733;</span><span>&#9733;</span>
+                            </strong>
+
+                            <strong th:if="${comentario.calificacion==3}">  
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </strong>
+                            <strong th:if="${comentario.calificacion==4}">  
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </strong>
+                            <strong th:if="${comentario.calificacion==5}">  
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </strong>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${comentario.contenido}"></h5>  
+                            <h5 > <strong th:text="${comentario.fechaHora}"> </strong> </h5> 
+                        </div>
+                    </div>
+                </div>
+            </center>
+
+        </div>
+
+
+        <script>
+
+            const carouselImages = document.querySelector('.carousel-images');
+
+            setInterval(() => {
+            carouselImages.style.transform = 'translateX(-100%)';
+            setTimeout(() => {
+            carouselImages.appendChild(carouselImages.firstElementChild);
+            carouselImages.style.transition = 'none';
+            carouselImages.style.transform = 'translateX(0)';
+            setTimeout(() => {
+            carouselImages.style.transition = 'transform 1s ease-in-out';
+            });
+            });
+            }, 4000); //tiempo)
+
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.getElementById("toggleButton");
+
+            // Simula el estado del proveedor (activo o inactivo)
+            let proveedorActivo = true;
+
+            // Función para cambiar el estado del proveedor
+            function toggleProveedor() {
+            proveedorActivo = !proveedorActivo;
+            alert(`Proveedor ${proveedorActivo ? 'activado' : 'desactivado'}`);
+            }
+
+            // Agrega un event listener al botón
+            toggleButton.addEventListener("click", toggleProveedor);
+            });
+        </script>
+
+
+    </body>
+</html>
+
+
+

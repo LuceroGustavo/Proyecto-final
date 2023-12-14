@@ -1,178 +1,117 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaft.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" th:href="@{/css/index.css}">
-</head>
-<body>
+<html xmlns:th="https://www.thymeleaft.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <title>Inicio</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <link rel="stylesheet" th:href="@{/css/index.css}">
+    </head>
+    <body>
 
-    <div id="presentacion">
-        <header id="header-index">
-            <div id="logo" >
-                <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
-            </div>
-            <div>
-           <a th:href="@{/proveedor/registrar}">
-            
-           <button type="button" class="btn btn-outline-info">
-                    Registrar Proveedor
-                </button>
-           </a>
-            </div>
-            <div>
-                <a th:href="@{/cliente/registrar}">
-                <button type="button" class="btn btn-outline-info">
-                    Registrar cliente
-                </button>
-                </a>
-            </div>
-            <div>
-                <a th:href="@{/rubro/registrar}">
-                <button type="button" class="btn btn-outline-info">
-                    Registrar Rubro
-                </button>
-            </a>
-            </div>         
-            
-            <div>
-                <button type="button" class="btn btn-outline-info">
-                    Ingreso a plataforma 
-                </button>
-            </div>
-        </header>
+        <div id="presentacion">
+             <header th:replace="/Fragments/navb :: navb"> </header>
 
-        <div id="contenedor">
+            <div id="contenedor">
                 <div id="animacion">
                     <h2><b>Bienvenidos a ServicePro M</b></h2>
-                    <br>
+                    
                     <p> <b>Nuestra aplicación de servicios generales simplifica la vida diaria al ofrecer
-                        acceso rápido y confiable a una variedad de servicios esenciales. Desde reparaciones
-                        menores, mayores, etc. Nuestra plataforma conecta a usuarios con profesionales verificados,
-                        brindando soluciones eficientes para satisfacer las necesidades del día a día con
-                        comodidad y seguridad</b></p>
-                </div>
-        </div>
-        <a href="#carrusel-container" class="btn btn-outline-info" id="nuestros-servicios">Nuestro servicios</a>
-    </div>
-    <div id="carrusel-container">
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="swiper-slide-img">
-                        <img th:src="@{/imagenes/albanilFoto.jpg}" alt="">
-                    </div>
-
-                    <div class="swiper-slide-content">
-                        <div>
-                            <br>
-                            <h2>Albañileria</h2>
-                            <p>Reseña.</p>
-                            <a class="show-more" th:href ="@{/proveedor/listar/__${'Albanil'}__}" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                            </svg></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="swiper-slide-img">
-                        <img th:src="@{/imagenes/carpinteriaFoto.jpg}" alt="">
-                        
-
-                    </div>
-                    <div class="swiper-slide-content">
-                        <div>
-                            <br>
-                            <h2>Carpintería</h2>
-                            <p>Reseña.</p>
-                            <a class="show-more" th:href ="@{/proveedor/listar/__${'Carpintero'}__}" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                            </svg></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="swiper-slide-img">
-                        <img th:src="@{/imagenes/electricistaFoto.jpg}" alt="">
-                    </div>
-                    <div class="swiper-slide-content">
-                        <div>
-                            <br>
-                            <h2>Electricista</h2>
-                            <p>Reseña.</p>
-                            <a class="show-more" th:href ="@{/proveedor/listar/__${'Electricista'}__}" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                            </svg></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="swiper-slide-img">
-                        <img th:src="@{/imagenes/gasistaFoto.jpg}" alt="">
-                    </div>
-                    <div class="swiper-slide-content">
-                        <div>
-                            <br>
-                            <h2>Gasista</h2>
-                            <p>Reseña.</p>
-                            <a class="show-more" th:href ="@{/proveedor/listar/__${'Gasista'}__}" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                            </svg></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="swiper-slide-img">
-                        <img th:src="@{/imagenes/plomeriaFoto.jpg}" alt="">
-                    </div>
-                    <div class="swiper-slide-content">
-                        <div>
-                            <br>
-                            <h2>Plomería</h2>
-                            <p>Reseña.</p>
-                            <a class="show-more" th:href ="@{/proveedor/listar/__${'Plomero'}__}" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                            </svg></a>
-                        </div>
-                    </div>
+                            acceso rápido y confiable a una variedad de servicios esenciales. Desde reparaciones
+                            menores, mayores, etc. Nuestra plataforma conecta a usuarios con profesionales verificados,
+                            brindando soluciones eficientes para satisfacer las necesidades del día a día con
+                            comodidad y seguridad</b></p>
                 </div>
             </div>
+
         </div>
-    </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js'></script>
+         <div id="carrusel-container">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div th:each="rubro : ${rubros}" class="swiper-slide">
+                                        <div class="swiper-slide-img">
+                                            <img th:src="@{/imagen/rubro/__${rubro.idRubro}__}" alt="">
+                                        </div>
+                                        <div class="swiper-slide-content">
+                                            <div>
+                                                <br>
+                                                <h2 th:text="${rubro.nombreRubro}">Nombre del Rubro</h2>
+                                                <p th:text="${rubro.descripcion}">Reseña</p>
+                                                <a class="show-more" th:href="@{'/proveedor/listar/' + ${rubro.nombreRubro}}">
+                                                    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js'></script>
 
-    <script>
-        const swiper = new Swiper(".swiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2.5
-            },
-            keyboard: {
-                enabled: true
-            },
-            mousewheel: {
-                thresholdDelta: 70
-            },
-            spaceBetween: 30,
-            loop: false,
-            breakpoints: {
-                640: {
-                    slidesPerView: 2
-                },
-                1024: {
-                    slidesPerView: 3
-                }
-            }
-        });
+                        <script>
+                                        document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("toggleButton");
 
-        swiper.slideTo(1, false, false);
-    </script>
-</body>
+    // Simula el estado del proveedor (activo o inactivo)
+    let proveedorActivo = true;
+
+    // Función para cambiar el estado del proveedor
+    function toggleProveedor() {
+        proveedorActivo = !proveedorActivo;
+        alert(`Proveedor ${proveedorActivo ? 'activado' : 'desactivado'}`);
+    }
+
+    // Agrega un event listener al botón
+    toggleButton.addEventListener("click", toggleProveedor);
+});
+                            
+                            
+                            
+                            
+                            
+                            
+                            const swiper = new Swiper(".swiper", {
+                            effect: "coverflow",
+                            grabCursor: true,
+                            centeredSlides: true,
+                            coverflowEffect: {
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 100,
+                            modifier: 2.5
+                            },
+                            keyboard: {
+                            enabled: true
+                            },
+                            mousewheel: {
+                            thresholdDelta: 70
+                            },
+                            spaceBetween: 30,
+                            loop: false,
+                            breakpoints: {
+                            640: {
+                            slidesPerView: 2
+                            },
+                            1024: {
+                            slidesPerView: 3
+                            }
+                            }
+                            });
+
+                            swiper.slideTo(1, false, false);
+
+                            const perfilDropdown = document.getElementById("perfil-dropdown");
+                            const dropdownMenu = document.getElementById("dropdown-menu");
+
+                            perfilDropdown.addEventListener("click", function() {
+                            if (dropdownMenu.style.display === "none") {
+                            dropdownMenu.style.display = "block";
+                            } else {
+                            dropdownMenu.style.display = "none";
+                            }
+                            });
+                        </script>
+    </body>
 </html>

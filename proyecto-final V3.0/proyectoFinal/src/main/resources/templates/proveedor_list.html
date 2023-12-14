@@ -4,27 +4,78 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link th:href="@{/css/proveedor_list.css}" type="text/css" rel="stylesheet"></link>
+        <link th:href="@{/css/proveedor_list.css}" type="text/css" rel="stylesheet"></link>
     </head>
     <body>
-        
-  
-  <div class="card" th:each="proveedor:${proveedores}">
-  <img src=th:img="${proveedor.imagen}" alt="Foto proveedor">
-  <div class="info">
-    <h2 th:text="${proveedor.nombre}"></h2>
-     <h2 th:text="${proveedor.apellido}"></h2>
-     <h2 th:text="${proveedor.matricula}"></h2>
-   <!-- <p th:text="${proveedor.rubro}"></p>  -->
-    <p th:text="${proveedor.descripcion}"></p>
-      <!--  <a sec:authorize="hasRole('ADMIN')" th:href="@{/proveedor/modificar/__${proveedor.id}__}"><button>Modificar</button> </a>-->
-    <div class="rating">
-      Puntuación:
-      <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span> 
-    </div>
-  </div>
-</div> 
 
- 
-</body>
+        <section th:each="proveedor : ${proveedores}"class="card">
+  <img th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="Foto proveedor">
+            <div class="main">
+                <div class="card-content">
+                    <div class="images">
+                        <div class="blue-bg-outer">
+                            <div class="white-bg">
+                                <div class="blue-bg">
+                                    <img th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" alt="Foto proveedor">
+                                    
+                                    th:src="@{/imagen/perfil/__${proveedor.dni}__}"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Information">
+                        <div class="animated_text">
+                           
+                            <h1 class="title" th:text="${proveedor.nombre}"></h1>
+                            <h1 class="title" th:text="${proveedor.apellido}"></h1>
+                        </div>
+                        <div>
+                            <h1  th:text="${proveedor.rubro.nombreRubro}"></h1>
+                            <h2 th:text="${proveedor.matricula}"></h2>
+                        </div>
+                        <p th:text="${proveedor.descripcion}"></p>
+                        <div id="rating">
+                            <strong>  Puntuación:
+                                <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <a th:href="@{/proveedor/perfil/__${proveedor.dni}__}">
+
+                                                  
+                            <button class="sign-up-btn" id="ov-btn-slide-close">Ver Perfil</button>
+                        </a>        
+
+                               <a th:href="@{/trabajo/contratar/__${proveedor.dni}__}">
+                            <button class="sign-up-btn" id="ov-btn-slide-close">Contratar</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section> 
+
+        <script>
+            var check = document.getElementById("click");
+            var header = document.getElementById("header");
+            var logo = document.getElementById("logo");
+            var menu = document.getElementById("menu");
+
+            check.addEventListener("click", () => {
+            if (check.checked) {
+            header.style.backgroundColor = "#02153f";
+            logo.style.color = "#fff";
+            menu.style.color = "#fff";
+
+            } else {
+            header.style.backgroundColor = "transparent";
+            logo.style.color = "#02153f";
+            menu.style.color = "#02153f";
+
+            }
+            } );
+
+        </script>
+
+    </body>
 </html>

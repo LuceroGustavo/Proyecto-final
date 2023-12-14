@@ -3,7 +3,7 @@ package com.example.proyecto.enumeraciones;
 
 
 
-
+//QUE HACE CADA COSA???????????????
 public enum Rol {
     ADMIN("Administrador"),
     PROVEEDOR("Proveedor"),

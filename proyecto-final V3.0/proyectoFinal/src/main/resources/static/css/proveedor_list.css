@@ -1,40 +1,295 @@
+:root {
+    background-color: rgba(0,0,0,0.1);
+    background-image: url("../imagenes/bg-inicio3.jpg");
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(90deg, rgb(255, 255, 255) 10%, #02153f 90%);
+    margin: auto;
+
+}
+a {
+    text-decoration: none; 
+    color: inherit; 
+}
 .card {
-      width: 500px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      margin: 20px;
-      display: flex;
-      align-items: center;
-      background-color: antiquewhite;
+    margin-bottom: 20px; 
+     background-color: rgb(53,51,51,0.602)
+}
+
+.card-content {
+    margin-top: 114px;
+    display: flex;
+    align-items: center;
+    gap:30px;
+}
+
+.images {
+    flex: 0 0 25em; 
+    height: 25em;
+    margin-right: 20px; 
+}
+
+/* Ajustes para asegurar que la información esté al lado */
+.Information {
+    flex: 1; /* La información tomará el espacio restante */
+    margin-left: 20px; /* Ajuste del margen izquierdo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blue-bg-outer {
+    width: 25em;
+    height: 25em;
+    border-radius: 50%;
+    background: #02153f;
+    display: grid;
+    place-items: center;
+}
+
+.white-bg {
+    width: 21.875em;
+    height: 21.875em;
+    border-radius: 50%;
+    background: #fff;
+    display: grid;
+    place-items: center;
+}
+
+.blue-bg {
+    width: 18.75em;
+    height: 18.75em;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+.blue-bg img {
+    position: relative;
+    bottom: 30px;
+    right: 20px;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 300px;
+}
+
+.sign-up-btn {
+    margin-top: 50px; /* Espacio entre los botones */
+    width: 130%; /* Aumento del ancho en un 30% */
+}
+
+#ov-btn-slide-close {
+  background: mediumslateblue; /* color de fondo */
+  color: white; /* color de fuente */
+  border: transparent; /* tamaño y color de borde */
+  padding: 10px 20px;
+  border-radius: 60px; /* redondear bordes */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
+  
+}
+#ov-btn-slide-close:before, #ov-btn-slide-close:after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: -50%;
+  background-color: lightgreen; /* color de fondo hover */
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+#ov-btn-slide-close:after {
+  left: 100%;
+}
+#ov-btn-slide-close:hover {
+  color: #fff; /* color de fuente hover */
+  cursor: pointer;
+}
+#ov-btn-slide-close:hover:before {
+  left: 0;
+}
+#ov-btn-slide-close:hover:after {
+  left: 50%;
+}
+
+/*ANIMATION*/
+
+.animated_text h1 {
+    -webkit-text-stroke: 1px #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: transparent;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#01aced, #01aced);
+    -webkit-background-clip: text;
+    background-clip: none;
+    background-position: -500px 0;
+    animation: backcolor 5s linear infinite;
+}
+
+@keyframes backcolor {
+
+    100% {
+        -webkit-text-stroke: 1px #01aced;
+        background-position: 0 0;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    html {
+        font-size: 80%;
     }
 
-    .card img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin-right: 20px;
+    section {
+        margin: 0;
     }
 
-    .info {
-      flex-grow: 1;
+
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 100%;
     }
 
-    .info h2 {
-      margin: 0;
+    body {
+        background: linear-gradient(180deg, rgb(255, 255, 255) 35%, #02153f 10%);
     }
 
-    .info p {
-      margin-top: 5px;
+    .menu {
+        display: block;
     }
 
-    .rating {
-      font-size: 24px;
+    .menu {
+        font-size: 1.5rem;
+        color: var(--primary-color);
     }
 
-    .rating span {
-      color: gold;
+    header {
+        padding: 0.7rem 1rem;
+        justify-content: space-between;
     }
 
+    nav {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: #02153f;
+        left: -100%;
+        width: 100%;
+        top: 3rem;
+        transition: all 0.3s ease;
+    }
+
+    nav a {
+        color: #fff;
+    }
+    #click:checked~nav {
+        left: 0;
+    }
+    .Information {
+        align-items: start;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+    section {
+        margin: 0 1rem;
+    }
+    .images {
+        min-width: 15em;
+    }
+
+    .blue-bg-outer {
+        width: 20em;
+        height: 20em;
+        margin: auto;
+
+    }
+
+    .white-bg {
+        width: 16.875em;
+        height: 16.875em;
+    }
+
+    .blue-bg {
+        width: 12.75em;
+        height: 12.75em;
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+    .images {
+        height: 17em;
+    }
+    .blue-bg-outer {
+        width: 16em;
+        height: 16em;
+
+    }
+
+    .white-bg {
+        width: 13em;
+        height: 13em;
+    }
+
+    .blue-bg {
+        width: 11em;
+        height: 11em;
+    }
+
+    .blue-bg img {
+        position: relative;
+        bottom: 20px;
+        right: 10px;
+        width: 100%;
+    }
+}
+#header-index{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 80px 10px 55px;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    align-items: center;
+
+}
+#logo>img{
+    margin: -30px;
+    height: 160px;
+}
+#presentacion{
+    text-align: center;
+}
+
+#botones{
+    display: flex;
+    justify-content: center;
+}
+.cada-boton{
+   
+    margin-left: 13px;
+}

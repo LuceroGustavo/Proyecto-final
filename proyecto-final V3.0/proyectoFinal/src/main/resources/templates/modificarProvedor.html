@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo.css" th:href="@{/css/estilo.css}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossoring>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+
+
+
+        <title></title>
+    </head>
+  
+    <body>
+        <nav>        <div id="presentacion">
+            <header id="header-index">
+                <div id="logo" >
+                    <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
+                </div>
+    
+                <div id="botones">
+                    <div class="cada-boton">
+                        <a th:href="@{/cliente/listarTrabajo}">
+                            <button  type="button" class="btn btn-outline-info">
+                               Ver mis trabajos
+                            </button>
+                        </a>
+                    </div>         
+    <br>
+    
+                    <div class="cada-boton">
+                        <a th:href="@{/logout}">
+                        <button type="button" class="btn btn-outline-info">
+                            Logout
+                        </button>
+                    </a>
+                    </div>
+                    <div class="cada-boton perfil">
+                    <a th:href="@{/cliente/modificar}">                   
+                        <img src="imagenes/perfil.png" href alt="foto del perfil">
+                    </a>
+                </div>
+                </div>
+    
+             
+            </div>
+        </nav>
+        <div class="background-container">
+            <div class="container">
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="container-form sign-up">
+                <div class="welcome-back">
+                    <div class="messeger">
+                        <h2>PERFIL PROVEDOR</h2>
+                        <p>Aqui podras modificar tu PERFIL </p>
+                    <button class="sign-in-btn" id="ov-btn-slide-close">modificar datos</button>
+                    </div>
+                </div>
+                <form class="formulario" id="formulario" th:action="@{modificarProveedor/__${proveedor.dni}__}" method="POST" enctype="multipart/form-data">
+
+                    <label for="nombre">Nombre:</label>
+                     <input type="text" id="nombre" name="nombre" th:value="${proveedor.nombre}">
+ 
+                     <label for="apellido">Apellido:</label>
+                     <input type="text" id="apellido" name="apellido"  th:value="${proveedor.apellido}">
+                     <!-- loco te falto matricula telefono direccion:(  -->
+                     <label for="direccion">Dirección:</label>
+                     <input type="text" id="domicilio" name="domicilio"  th:value="${proveedor.domicilio}">
+ 
+                     <label for="telefono">Teléfono:</label>
+                     <input type="text" id="telefono" name="telefono"  th:value="${proveedor.telefono}">
+ 
+                     <label for="email">Email:</label>
+                     <input type="email" id="email" name="email"  th:value="${proveedor.email}">
+ 
+                     <label for="precioHora">Precio Hora:</label> 
+                     <input type="number" id="precio-hora" name="precioHora" th:value="${proveedor.precioHora}" >
+                     <label for="rubros">Selecciona los rubros:</label><br>
+ 
+                     <div class="form-group my-3">
+                         <select name="idRubro">
+                             <option th:value=${null}>Seleccionar Rubro</option>
+                             <option th:each="rubro : ${rubros}"
+                                     th:value="${rubro.idRubro}"
+                                     th:text="${rubro.nombreRubro}"
+                                     />
+                         </select>
+                     </div>
+             
+                 <label for="matricula">Matricula:</label>
+                 <input type="text" id="matricula" name="matricula"  th:value="${proveedor.matricula}">
+                 <label for="descripcion">Descripción:</label>
+                 <input type="text" id="descripcion" name="descripcion"  th:value="${proveedor.descripcion}">
+                 <input type="submit" value="RegistrarProveedor">
+ 
+             </form>
+          
+<div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+    ¡Éxito! <span th:text="${exito}"></span>
+</div>
+
+<div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+    Error ð <span th:text="${error}"></span>
+</div>
+
+    
+</html>

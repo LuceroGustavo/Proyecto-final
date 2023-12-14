@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/comentario_list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+   
+        <div class="container">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre del Rubro</th>
+                            <th scope="col">Descripción</th>      
+                            <th scope="col" sec:authorize="hasRole('ADMIN')">Editar Rubro</th>
+                            <th scope="col"sec:authorize="hasRole('ADMIN')">Eliminar Rubro</th>
+
+                        </tr>
+                    </thead>
+                    <tbody th:each="rubro:${rubros}">
+                        <tr>
+                            <th scope="row"> <img th:src="@{/imagen/rubro/__${rubro.idRubro}__}" alt=""></th>
+                            <th scope="row"  th:text="${rubro.nombreRubro}"></th>
+                            <td scope="row"  th:text="${rubro.descripcion}"></td>
+                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/rubro/modificar/__${rubro.idRubro}__}"><button class="btn-outline-info">Modificar</button> </a></td>
+                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/rubro/eliminar/__${rubro.idRubro}__}"><button class="btn-outline-info">Eliminar</button> </a></td>
+
+                        </tr>
+                    </tbody> 
+
+
+                </table>
+
+
+
+            </div>
+        
+        
+        <footer th:replace="/fragments/footer :: footer" ></footer> 
+    </body>
+</html>

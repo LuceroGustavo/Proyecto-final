@@ -1,6 +1,5 @@
 package com.example.proyecto.entidades;
 
-
 import com.example.proyecto.enumeraciones.Rol;
 import java.util.Set;
 import javax.persistence.CollectionTable;
@@ -15,12 +14,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import lombok.Data;
 //ProyectoSubido
+
+
+//// ESTO SE USA?????????????????
 @Data
 @Entity
 @PrimaryKeyJoinColumn(name = "persona_dni")
 public class Administrador extends Persona {
-
- 
 
     // Otros campos y anotaciones
     @ManyToMany
@@ -37,6 +37,4 @@ public class Administrador extends Persona {
     private Set<Rol> roles;
 
     // Getters y setters
-
-    
 }

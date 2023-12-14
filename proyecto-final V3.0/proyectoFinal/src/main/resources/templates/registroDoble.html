@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/stilo.css" th:href="@{/css/stilo.css}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossoring>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+
+
+
+        <title></title>
+
+    <div class="background-container">
+        <div class="container">
+
+        </div>
+    </div>
+
+
+
+        <div class="container-form sign-up">
+            <div class="welcome-back">
+                <div class="messeger">
+                    <h2>BIENVENIDO</h2>
+                    <h2>Aqui podras Registrarte como usuario</h2>
+                    <h2>o como proveedor.</h2>
+
+                </div>
+            </div>
+
+
+            <form class="formulario" id="formulario1" th:action="@{/cliente/registro/}" method="POST" enctype="multipart/form-data">
+                <h2>BIENVENIDO</h2>
+                <img th:src="@{/imagenes/grupo.jpg}" alt="Logo de tu sitio web" class="logo">
+                <h2 class="create-account">Registrarse</h2>
+
+
+                <div class="input-container">
+                    <input type="text" placeholder="Apellido"  name="apellido" th:value="${apellido}" class="c3">
+                </div>
+                <div class="input-container">
+                    <input type="text" placeholder="Nombre" name="nombre"  th:value="${nombre}" class="c3">
+                </div>
+
+                <br>
+
+                <div class="input-container">
+                    <input type="text" placeholder="Dni" name="dni"  th:value="${dni}" class="c3">
+                </div>
+                <div class="input-container">
+                    <input type="text" placeholder="Telefono" name="telefono"  th:value="${telefono}" class="c3">
+                </div>
+
+                <br>
+
+                <div class="input-container">
+                    <input type="text" placeholder="Direccion" name="direccion"  th:value="${direccion}" class="c3">
+                </div>
+                <div class="input-container">
+                    <input type="text" placeholder="Email" name="email"  th:value="${email}" class="c3">
+                </div>
+
+                <br>
+
+                <div class="input-container">
+                    <input type="password" placeholder="Password"  name="password" class="c3" >
+                </div>
+                <div class="input-container">
+                    <input type="password" placeholder="Repertir Password"  name="password2" class="c3" >
+                </div>
+                <br>
+
+                <label>Carga tu Foto de Perfil</label>
+                <br>
+                <br>
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="archivo" >
+                </div>
+
+                <div id="esconder">
+                    <input hidden   name="matricula" th:value="${matricula}" class="c4">
+                    <input hidden   name="precioHora" th:value="${precioHora}" class="c4">
+                    <input hidden  name="idRubro" th:value="${idRubro}" class="c4">
+                    <input hidden name="descripcion" th:value="${descripcion}" class="c4">
+                    <input hidden   name="validador" th:value="${validador}" class="c4">
+                </div>
+                <br>
+                <button   type="submit" href="#" class="ov-btn-grow-spin">Finalizar Registro</button>
+                <br>
+                <br>
+                <a class="sign-in-btn" >Registrarse Como Proveedor</a> 
+                <br>
+                <br>
+            </form>
+        </div>
+        <div class="container-form sign-in">
+            <form class="formulario" id="formulario2" th:action="@{/proveedor/registro/}" method="POST" enctype="multipart/form-data">
+                <h2>BIENVENIDO</h2>
+                <br>
+                <img th:src="@{/imagenes/grupo.jpg}" alt="Logo de tu sitio web" class="logo">
+                <br>
+                <br>
+                <br>
+                <h3>Registrarse Como Proveedor</h3>
+
+
+                <input hidden name="validador" th:value="${1}">
+                <div class="input-container">
+                    <input type="text" placeholder="Matricula" name="matricula" th:value="${matricula}" class="c3">
+                </div>
+                <div class="input-container">
+                    <input type="text" placeholder="Precio Por Hora" name="precioHora" th:value="${precioHora}" class="c3">
+                </div>
+                <input type="text" placeholder="descripcion" name="descripcion" th:value="${descripcion}" class="c3">
+                <br>
+
+
+
+                <div class="form-group my-3">
+                    <select name="idRubro">
+                        <option th:value=${null}>Seleccionar Rubro</option>
+                        <option th:each="rubro : ${rubros}"
+                                th:value="${rubro.idRubro}"
+                                th:text="${rubro.nombreRubro}"
+                                />
+                    </select>
+                </div>
+                <br>
+                <br>
+                <!--       <div class="form-group my-3">
+                           <select name="idRubro">
+                                                           <option th:value=${null}>Seleccionar Rubro</option>
+                                                           <option th:each="rubro : ${rubros}"
+                                                                   th:value="${rubro.idRubro}"
+                                                                   th:text="${rubro.nombreRubro}"
+                                                                   />
+                                                       </select>
+                       </div>  -->
+                <br>
+                <button type="submit" href="#" class="ov-btn-grow-spin">Continuar Registro</button>
+                <br>
+                <br>
+
+                <a   href="#" class="sign-up-btn" id="ov-btn-slide-close">volver</a>
+
+                <br>
+                <br>
+                <p>No encuantras tu rubro? contacta al administardor </p>
+                <a   href="#" class="sign-up-btn" id="ov-btn-slide-close">Contactar</a>
+
+            </form>
+            <div class="welcome-back">
+                <div class="messeger">
+                    <h1>BIENVENIDO</h1>
+                    <h2>Aqui podras Registrarte como usuario</h2>
+                    <h2>o como proveedor.</h2>
+                    <br>
+                    <br>
+                    <a href="#" class="sign-up-btn">Registrarse</a>
+                </div>
+            </div>
+        </div>
+   
+    <div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+        ¡Éxito! <span th:text="${exito}"></span>
+    </div>
+
+    <div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+        Error <span th:text="${error}"></span>
+    </div>
+
+
+</body>
+
+<script > 
+    const $btnSignIn=document.querySelector('.sign-in-btn'),
+    $btnSignUp=document.querySelector('.sign-up-btn'),
+
+    $signUp=document.querySelector('.sign-up'),
+    $signIn=document.querySelector('.sign-in');
+
+    document.addEventListener('click', e=> {
+    if(e.target === $btnSignIn || e.target === $btnSignUp){
+    $signIn.classList.toggle('active');
+    $signUp.classList.toggle('active') ;// usamos el negado de active yeah!!//
+
+    }
+    });  
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

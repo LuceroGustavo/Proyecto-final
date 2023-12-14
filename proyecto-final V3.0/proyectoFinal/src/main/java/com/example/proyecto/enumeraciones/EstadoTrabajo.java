@@ -12,8 +12,10 @@ package com.example.proyecto.enumeraciones;
 public enum EstadoTrabajo {
 
     PENDIENTE,
+    REVISION,
     ACEPTADO,
     CANCELADO,
-    FINALIZADO
+    FINALIZADO,
+    CALIFICADO
 
 }

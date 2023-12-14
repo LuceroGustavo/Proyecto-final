@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Service Pro M</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/listaProveedor.css}" type="text/css" rel="stylesheet"></link>
+
+
+    </head>
+    <body>
+        <header id="header-index">
+            <div id="logo" >
+                <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
+            </div>
+            <div class="search-box">
+                <form class="search-box">
+                    <input type="text" placeholder=" "/>
+                    <button type="reset"></button>
+                </form>
+            </div>
+            <div id="botones" sec:authorize="hasRole('ADMIN')">
+                <div class="cada-boton">
+                    <a th:href="@{/proveedor/listar}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Proveedores
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div id="botones" sec:authorize="hasRole('ADMIN')">
+                <div class="cada-boton">
+                    <a th:href="@{/clientes/listar}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Clientes
+                        </button>
+                    </a>
+                </div>  
+            </div>
+            <div id="botones">
+                <div class="cada-boton">
+                    <a th:href="@{/index1}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Home
+                        </button>
+                    </a>
+                </div>         
+                <br>
+
+                <div class="cada-boton">
+                    <a th:href="@{/}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Mis trabajos
+                        </button>
+                    </a>
+                </div>         
+                <br>
+
+                <div class="cada-boton ">
+
+                    <div id="perfil-dropdown">
+
+                        <a>
+                            <div class="imagen-circulo">
+                                <div class="cada-boton perfil">                                      
+                                    <!--       <img <a th:if="${session.usuariosession.imagen != null}" id="logo"  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" class="d-flex align-items-center">  -->
+                                    <img th:if="${session.usuariosession.imagen != null}" id="logo" th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" class="d-flex align-items-center" alt="Foto de Perfil">
+
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+
+                        <ul id="dropdown-menu">
+                            <li>
+                                <a th:href="@{/}" class="btn btn-outline-info">
+                                    <button class="btn btn-outline-info" id="dropdown-btn"> Perfil</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/cliente/modificar}" >
+                                    <button class="btn btn-outline-info" id="dropdown-btn"> Modificar Perfil</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/}" class="btn btn-outline-info">
+                                    <button class="btn btn-outline-info" id="dropdown-btn"> Logout</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    </header>
+
+                    <!--<a th:href="@{/proveedor/perfil/__${proveedor.dni}__}">-->
+                    <div class="perfil-container" th:each="proveedor : ${proveedores}">
+                        <div class="perfil-header">
+                            <div class="foto-perfil">
+                                <img th:src="@{/imagen/perfil/__${proveedor.dni}__}">
+                            </div>
+                            <h1 th:text="${proveedor.nombre}"></h1>
+                            <h1 th:text="${proveedor.apellido}"></h1>
+                        </div>
+                        <div class="perfil-info">
+                            <center>
+                                <h5><strong>TRABAJOS REALIZADOS:</strong>
+                                    <span th:if="${proveedor.contdTrabajoRealizado > 0}" th:text="${proveedor.contdTrabajoRealizado}"></span> 
+                                    <span th:unless="${proveedor.contdTrabajoRealizado > 0}" th:text="${0}"></span> </h5>
+                                <p ><strong>Telefono:</strong><span th:text="${proveedor.telefono}"></span>  </p>
+                                <p ><strong>Email:</strong><span th:text="${proveedor.email}"></span>  </p>
+                                <p ><strong>Domicilio:</strong><span th:text="${proveedor.domicilio}"></span>  </p>
+                                <p ><strong>Rubro:</strong><span th:text="${proveedor.rubro.nombreRubro}"></span>  </p>
+                                <p ><strong>Matricula:</strong><span th:text="${proveedor.matricula}"></span>  </p>
+
+                                <strong>  CALIFICACION </strong> <br>
+                                <div id="rating">
+                                    <h6 th:if="${proveedor.puntuacionPromedio==0}"> 
+                                        <p Style="color:black;">este proveedor todavia no realizo ningun trabajo</p>
+                                    </h6>
+                                    <strong th:if="${proveedor.puntuacionPromedio==1}"> 
+                                        <span>&#9733;</span>
+                                    </strong>
+
+                                    <strong th:if="${proveedor.puntuacionPromedio==2}">  
+                                        <span>&#9733;</span><span>&#9733;</span>
+                                    </strong>
+
+                                    <strong th:if="${proveedor.puntuacionPromedio==3}">  
+                                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                    </strong>
+                                    <strong th:if="${proveedor.puntuacionPromedio==4}">  
+                                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                    </strong>
+                                    <strong th:if="${proveedor.puntuacionPromedio==5}">  
+                                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                    </strong>
+                                </div>
+                                <div class="btn-container">
+                                    <a th:href="@{/proveedor/perfil/__${proveedor.dni}__}">
+                                                                            <button class="ov-btn-grow-spin" id="ov-btn-grow-spin">Ver Perfil</button>
+                                    </a>        
+
+                                    <a th:href="@{/trabajo/contratar/__${proveedor.dni}__}">
+                                        <button class="ov-btn-grow-spin" id="ov-btn-grow-spin">Contratar</button>
+                                    </a>
+                                </div>
+                            </center>
+                        </div>
+                    </div> 
+
+
+                    <footer th:replace="/fragments/footer :: footer" ></footer> 
+
+                    <script>
+                        const perfilDropdown = document.getElementById("perfil-dropdown");
+                        const dropdownMenu = document.getElementById("dropdown-menu");
+
+                        perfilDropdown.addEventListener("click", function() {
+                        if (dropdownMenu.style.display === "none") {
+                        dropdownMenu.style.display = "block";
+                        } else {
+                        dropdownMenu.style.display = "none";
+                        }
+                        });
+                    </script>   
+                    </html>
+
+
+
