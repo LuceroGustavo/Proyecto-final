@@ -21,7 +21,7 @@ public class WhatsappServicio {
 
     public static final String ACCOUNT_SID = "ACcc20b39020dc7cd0bdd6879a64d90e78";
     /*twilio cid de max*/
-    public static final String AUTH_TOKEN = "442ce73ca60164432287e21e55b5ba75";
+    public static final String AUTH_TOKEN = "20dc60757c01d4969f33bf19e0b65851";
     /*token de max*/
 
     public String enviarMensaje(String numero, String mensaje) throws MiException {
