@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <title>TODO supply a title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link th:href="@{/css/registroRubro.css}" type="text/css" rel="stylesheet"></link>
+</head>
+    <body>
+        
+        
+            <section class="form-main">
+        <div class="form-content">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+        <div class="circle-3"></div>
+        
+        
+     
+  <form id="reister-form-cliente" th:action="@{/rubro/registro/}" method="POST" enctype="multipart/form-data">
+               
+                 
+      <label for="nombre"><strong>Ingresar Rubro:</strong></label>
+      <input type="text" id="nombre" name="nombreRubro" required th:value="${nombre}" placeholder="Ingrese el rubro"><br>
+      
+      <label for="descripcion"><strong>Descripcion:</strong></label>
+      <input type="text" id="descripcion" name="descripcion" required th:value="${apellido}" placeholder="Descripcion"><br>
+     <div class="form-group my-3">
+                <input type="file" class="form-control" name="archivo" placeholder="Imagen" >
+
+                <input type="submit" value="Registrar Rubro">
+            </form>
+
+
+            </div>
+
+     
+           
+    
+      
+      <button type="submit" href="#" class="cta" value="Registrar Rubro">
+  <span>Registrar Rubro</span>
+  <svg width="3px" height="5px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    <polyline points="8 1 12 5 8 9"></polyline>
+  </svg>
+</button>
+
+      
+      
+    </form>
+            </section>
+    </body>
+      <div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+            ¡Éxito! <span th:text="${exito}"></span>
+        </div>
+
+        <div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+            Error ð <span th:text="${error}"></span>
+        </div>
+
+    
+</html>
+
+<!--
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/list.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <header id="header-index">
+            <div id="logo" >
+                <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
+            </div>
+            <div class="search-box">
+                <form class="search-box">
+                    <input type="text" placeholder=" "/>
+                    <button type="reset"></button>
+                </form>
+            </div>
+            <div id="botones" sec:authorize="hasRole('ADMIN')">
+                <div class="cada-boton">
+                    <a th:href="@{/proveedor/listar}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Proveedores
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div id="botones" sec:authorize="hasRole('ADMIN')">
+                <div class="cada-boton">
+                    <a th:href="@{/clientes/listar}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Clientes
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div id="botones">
+                <div class="cada-boton">
+                    <a th:href="@{/admin/dashboard}">
+                        <button  type="button" class="btn btn-outline-info">
+                            Home
+                        </button>
+                    </a>
+                </div>         
+                <br>
+            </div>
+            <div class="cada-boton">
+                <a th:href="@{/}">
+                    <button  type="button" class="btn btn-outline-info">
+                        Mis trabajos
+                    </button>
+                </a>
+            </div>         
+            <br>
+
+            <div class="cada-boton ">
+
+                <div id="perfil-dropdown">
+
+                    <a>
+                        <div class="imagen-circulo">
+                            <div class="cada-boton perfil">                                      
+
+
+                                <img <a th:if="${session.usuariosession.imagen != null}" id="logo"  th:src="@{/imagen/perfil/__${session.usuariosession.dni}__}" class="d-flex align-items-center">
+
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+
+                    <ul id="dropdown-menu">
+                        <li>
+                            <a th:href="@{/}" class="btn btn-outline-info">
+                                <button class="btn btn-outline-info" id="dropdown-btn"> Perfil</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/cliente/modificar}" >
+                                <button class="btn btn-outline-info" id="dropdown-btn"> Modificar Perfil</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/}" class="btn btn-outline-info">
+                                <button class="btn btn-outline-info" id="dropdown-btn"> Logout</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+        </header>
+        <div class="form">
+            <form id="reister-form-cliente" th:action="@{/rubro/registro/}" method="POST" enctype="multipart/form-data">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombreRubro"  th:value="${nombre}"><br>
+                <label for="descripcion">descripcion:</label>
+                <input type="text" id="descripcion" name="descripcion" th:value="${descripcion}"><br>
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="imagen" accept="image/*">
+                </div>
+
+                <input type="submit" value="Registrar Rubro">
+            </form>
+        </div>
+        <script>
+            const perfilDropdown = document.getElementById("perfil-dropdown");
+            const dropdownMenu = document.getElementById("dropdown-menu");
+
+            perfilDropdown.addEventListener("click", function () {
+            if (dropdownMenu.style.display === "none") {
+            dropdownMenu.style.display = "block";
+            } else {
+            dropdownMenu.style.display = "none";
+            }
+            });
+        </script>
+
+        <div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+            ¡Éxito! <span th:text="${exito}"></span>
+        </div>
+
+        <div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+            Error ð <span th:text="${error}"></span>
+        </div>
+
+
+
+    </body>
+</html>
+
+-->

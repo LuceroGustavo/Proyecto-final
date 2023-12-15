@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!--   <link th:href="@{/css/list.css}" type="text/css" rel="stylesheet"></link>  -->
+        <link th:href="@{/css/animacion.css}" type="text/css" rel="stylesheet"></link>
+         <link th:href="@{/css/nav.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <header th:replace="/Fragments/navb :: navb"> </header>
+
+        <div id="contenedor">
+            <div id="animacion">
+                <h2><b>ServicePro M. </b></h2>
+                <br>
+                <p th:if="${session.usuariosession != null}" th:text=" 'Bienvenido de nuevo Admin '+ ${session.usuariosession.nombre} "> <b></b></p>
+            </div>
+        </div>
+
+ 
+
+         <div><img class="logo" ></div>
+
+
+
+    <div><img class="logo"></div>
+
+    <div class="boxesContainer">
+        
+        <div class="cardBox" >
+            
+            <div class="card">
+             
+                <div class="front">
+              
+
+<h3>Aqui podras editar <h3>
+    <h3>y listar los comentarios <h3>
+      
+           <img class="logo" th:src="@{/imagenes/grupo.jpg}">
+                                                      
+                </div>
+                <div class="back">
+                   
+                    <br>
+                    <br>
+                    <a th:href="@{/admin/listarMayor}" class="ov-btn-grow-skew-reverse">Mayor Calificacion</a>
+                    <a th:href="@{/admin/listarMenor}" class="ov-btn-grow-skew-reverse">Menor Calificacion</a>
+                    <a th:href="@{/comentario/listar}" class="ov-btn-grow-skew-reverse">Listar Todos</a>
+                    <a th:href="@{/admin/listarFecha}" class="ov-btn-grow-skew-reverse">Por Fecha</a>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    <div class="boxesContainer">
+
+        <div class="cardBox">
+            <div class="card">
+                <div class="front">
+<br>
+              <h3>Ver Solicitud</h3>
+                        <h3>de proveedores<h3>
+                            <img class="logo" th:src="@{/imagenes/grupo.jpg}">
+                                                      
+                </div>
+                <div class="back">
+                    <br>
+                     <br>
+                     <a href="#" class="ov-btn-grow-skew-reverse">Ver Solicitudes</a>
+                     <a href="#" class="ov-btn-grow-skew-reverse">Ver Aceptadas</a>
+                     <a href="#" class="ov-btn-grow-skew-reverse">Ver Rechazada</a>
+                     <a href="#" class="ov-btn-grow-skew-reverse">Listar Por Fecha</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="cardBox">
+            <div class="card">
+                <div class="front">
+                   <br>
+                    <h3>Ver Detalles<h3>
+                        <h3>de los Trabajos<h3>
+                            <img class="logo" th:src="@{/imagenes/grupo.jpg}">
+                                                         
+                </div>
+                <div class="back">
+                    <br>
+                    <br>
+                    <a th:href="@{/trabajo/listartodos}" class="ov-btn-grow-skew-reverse">Todos</a>
+                    <a th:href="@{/admin/listarAceptados}" class="ov-btn-grow-skew-reverse">Aceptados</a>
+                    <a th:href="@{/admin/listarRechazados}" class="ov-btn-grow-skew-reverse">Rechazados</a>
+                    <a th:href="@{/admin/listarFinalizados}" class="ov-btn-grow-skew-reverse">Finalizados</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="cardBox">
+            <div class="card">
+                <div class="front">
+                  <br>
+                    <h3>Aqui podras<h3>
+                        <h3>ver los clientes<h3>
+                            <img class="logo" th:src="@{/imagenes/grupo.jpg}">
+                                                         
+                </div>
+                <div class="back">
+                    <br>
+                    <br>
+                    <a href="#" class="ov-btn-grow-skew-reverse"> Dados de Baja</a>
+                    <a href="#" class="ov-btn-grow-skew-reverse">  A-Z Ordenar</a>
+                    <a th:href="@{/cliente/listarTodos}" class="ov-btn-grow-skew-reverse">Ver Todos</a>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="cardBox">
+            <div class="card">
+                <div class="front">
+                <br>
+                    <h3>Servicio<h3>
+                        <h3>Whatsapp<h3>
+                            <img class="logo" th:src="@{/imagenes/grupo.jpg}">
+                                                         
+                </div>
+                <div class="back">
+                    <br>
+                    <br>
+                    <a href="#" class="ov-btn-grow-skew-reverse">Pegar Token</a>
+                    <a th:href="@{/mensajes/crear}" class="ov-btn-grow-skew-reverse">Crear Mensajes</a>
+                 
+                </div>
+            </div>
+        </div>
+
+
+        <div class="cardBox">
+            <div class="card">
+                <div class="front">
+                    <br>
+                    
+                    <h3>Administrar<h3>
+                        <h3>Perfiles<h3>
+                              <img class="logo" th:src="@{/imagenes/grupo.jpg}">         
+                </div>
+                <div class="back">
+                    <br>
+                    <br>
+                    <a href="#" class="ov-btn-grow-skew-reverse">A-Z Ordenar</a>
+                    <a href="#" class="ov-btn-grow-skew-reverse">Dados de Baja</a>
+                    <a href="#" class="ov-btn-grow-skew-reverse">Cambio de Rol</a>
+                    <a th:href="@{/listaPersonas}" class="ov-btn-grow-skew-reverse">ver todos</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            const perfilDropdown = document.getElementById("perfil-dropdown");
+            const dropdownMenu = document.getElementById("dropdown-menu");
+
+            perfilDropdown.addEventListener("click", function () {
+            if (dropdownMenu.style.display === "none") {
+            dropdownMenu.style.display = "block";
+            } else {
+            dropdownMenu.style.display = "none";
+            }
+            });
+        </script>
+    </body>
+</html>

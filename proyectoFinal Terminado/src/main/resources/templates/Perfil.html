@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{index.css}">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <main class="container">
+            <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+                <div class="container text-center">
+                    <h1 class="display-4 fst-italic" th:text="${proveedor.rubro.nombreRubro}"> 
+                        <font style="vertical-align: inherit;" >
+                        <font style="vertical-align: inherit;"> </font>
+                        </font>
+                    </h1>
+                    <div class="text-center">
+                        <img src=th:img="${proveedor.imagen}" alt="Foto proveedor">
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <strong>Información Personal:</strong><br>
+                                <p>Nombre: <span th:text="${proveedor.nombre}"></span></p> <br>    
+                                <p>Apellido: <span th:text="${proveedor.apellido}"></span></p><br>
+                                <p>DNI <span th:text="${proveedor.dni}"></span></p><br>
+                                <p>Telefono: <span th:text="${proveedor.telefono}"></span></p><br>
+                                <p>Email: <span th:text="${proveedor.email}"></span></p><br>
+
+                                <p>Descripción: <span th:text="${proveedor.descripcion}"></span></p><br>
+                            </div>
+                            <div class="col-md-3 text-md-end">
+                                <p class="lead mb-2">
+                                    <strong>Información Adicional:</strong><br>
+                                </p>
+                                <p>Matricula: <span th:text="${proveedor.matricula}"></span></p><br>
+                                <p>Dirección: <span th:text="${proveedor.domicilio}"></span></p><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <div
+                                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        <strong class="d-inline-block mb-2 text-primary-emphasis">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">el mismo rubro</font>
+                                            </font>
+                                        </strong>
+                                        <h3 class="mb-0">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Publicación destacada</font>
+                                            </font>
+                                        </h3>
+                                        <div class="mb-1 text-body-secondary">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">12 de noviembre</font>
+                                            </font>
+                                        </div>
+                                        <p class="card-text mb-auto">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Esta es una tarjeta de informacion de otra persona con experiencia similar al postulado anterior .</font>
+                                            </font>
+                                        </p>
+                                    </div>
+                                    <div class="col-auto d-none d-lg-block">
+                                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
+                                            role="img" aria-label="Marcador de posición: Miniatura" preserveAspectRatio="xMidYMid slice"
+                                            focusable="false">
+                                            <title>Placeholder</title>
+                                            <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
+                                                dy=".3em">fontanero EJEMPLO</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div
+                                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        <strong class="d-inline-block mb-2 text-success-emphasis">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">el diseño</font>
+                                            </font>
+                                        </strong>
+                                        <h3 class="mb-0">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Título profesional</font>
+                                            </font>
+                                        </h3>
+                                        <div class="mb-1 text-body-secondary">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">11 de noviembre</font>
+                                            </font>
+                                        </div>
+                                        <p class="mb-auto">
+                                            <font style="vertical-align: inherit;">
+                                                <font style="vertical-align: inherit;">Esta es una tarjeta más amplia con texto de apoyo
+                                                    a continuación como introducción natural al contenido adicional.</font>
+                                            </font>
+                                        </p>
+                
+                                    </div>
+                                    <div class="col-auto d-none d-lg-block">
+                                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
+                                            role="img" aria-label="Marcador de posición: Miniatura" preserveAspectRatio="xMidYMid slice"
+                                            focusable="false">
+                                            <title>Placeholder</title>
+                                            <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
+                                                dy=".3em">صورة مصغرة</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                <div class="btn-container">
+                    <a th:href="@{/}">
+
+                        <button class="sign-up-btn" id="ov-btn-slide-close">volver</button>
+                    </a>        
+
+                    <a th:href="@{/trabajo/contratar/__${proveedor.dni}__}">
+                        <button class="sign-up-btn" id="ov-btn-slide-close">Contratar</button>
+                    </a>
+                </div>
+                <center>
+                    <div class="card" th:each="comentario:${comentarios}" id="comentarioID">
+                        <div class="card">
+                            <div id="rating">
+                                <strong>  Puntuación:
+                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                                </strong>
+                                 <strong th:text="${comentario.calificacion}">  
+                                   
+                                </strong>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${comentario.contenido}"></h5>  
+                                <h5 > <strong th:text="${comentario.fechaHora}"> </strong> </h5> 
+                            </div>
+                        </div>
+                    </div>
+                </center>
+
+
+
+
+        </main>
+    </body>
+
+</html>

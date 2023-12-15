@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo.css" th:href="@{/css/estilo.css}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossoring>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+
+
+
+        <title></title>
+    </head>
+  
+ 
+        <header id="header-index">
+            <div id="logo" >
+                <img th:src="@{/imagenes/logoServiceProM.png}" alt="">
+            </div>
+         <div class="search-box">
+             <form class="search-box">
+                 <input type="text" placeholder=" "/>
+                 <button type="reset"></button>
+             </form>
+         </div>
+         <div id="botones" >
+                <div class="cada-boton">
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/proveedor/listar}" >
+                        <button  type="button" class="btn btn-outline-info" >
+                           Proveedores
+                        </button>
+                    </a>
+                </div>
+             <div id="botones" >
+                <div class="cada-boton">
+                    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/clientes/listar}" >
+                        <button  type="button" class="btn btn-outline-info">
+                           Clientes
+                        </button>
+                    </a>
+                </div>  
+
+            <div id="botones">
+                <div class="cada-boton">
+                    <a th:href="@{/index1}">
+                        <button  type="button" class="btn btn-outline-info">
+                           Home
+                        </button>
+                    </a>
+                </div>         
+<br>
+
+                <div class="cada-boton">
+                    <a th:href="@{/}">
+                        <button  type="button" class="btn btn-outline-info">
+                           Mis trabajos
+                        </button>
+                    </a>
+                </div>         
+<br>
+
+                <div class="cada-boton">
+                    <a th:href="@{/}">
+                    <button type="button" class="btn btn-outline-info">
+                        Perfil
+                    </button>
+                </a>
+                </div>
+<br>
+
+                <div class="cada-boton">
+                    <a th:href="@{/}">
+                    <button type="button" class="btn btn-outline-info">
+                        Logout
+                    </button>
+                </a>
+                </div>
+            </div>
+            
+        
+        </header>
+        <body>
+            <div class="background-container">
+                <div class="container">
+    
+                </div>
+            </div>
+        <div class="container">
+            <div class="container-form sign-up">
+                <div class="welcome-back">
+                    <div class="messeger">
+                        <h2>PERFIL</h2>
+                        <br>
+                        <p>Aqui podras modificar los datos de tu usuario </p>
+                        <a th:href="@{/inicio}">
+                    <button class="sign-in-btn" id="ov-btn-slide-close">Volver</button>
+                    </a>
+                    </div>
+                </div>            
+                <form class="formulario" id="formulario" th:action="@{modificar/__${cliente.dni}__}" method="POST" enctype="multipart/form-data">
+                    <div class="container">
+
+                   <div class="row">
+    <!--
+   <div class="col-sm-3">
+                       <div class="text-center">
+                           
+                           <div class="image-container">
+                               <img id="profileImage" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                           </div>
+
+                           <br>
+                           <label for="inputFile" class="custom-file-upload">
+                               <span>Seleccionar archivo</span>
+                               <input type="file" id="inputFile" onchange="changeProfileImage(this)">
+                           </label>
+                       </div>
+                       </div><br>
+
+                       <input type="file" name="archivo" accept="image/*" style="display: none;">
+                   </div>
+                   -->
+                   <div class="form-group my-3">
+       <input type="file" class="form-control" name="archivo">
+       </div>
+                   <div class="input-container">
+                       <label for="nombre">Nombre:</label>
+                       <input type="text" id="nombre" name="nombre"  th:value="${cliente.nombre}">
+                   </div>
+
+                   <div class="input-container">
+                       <label for="apellido">Apellido:</label>
+                       <input type="text" id="apellido" name="apellido"  th:value="${cliente.apellido}">
+                   </div>
+                   <br>
+
+                   <div class="input-container">
+                       <label for="domicilio">Dirección:</label>
+                       <input type="text" id="domicilio" name="domicilio"  th:value="${cliente.domicilio}">
+                   </div>
+                   <div class="input-container">
+                       <label for="telefono">Teléfono:</label>
+                       <input type="text" id="telefono" name="telefono"  th:value="${cliente.telefono}">
+                   </div>
+
+                   <div class="input-container">
+
+                       <label for="email">Email:</label>
+                       <input type="email" id="email" name="email" th:value="${cliente.email}">
+                   </div>
+                   <!--
+                   <div class="input-container">
+                       <input type="password" class="form-control" name="password" placeholder="PASSWORD">
+
+                   </div>
+                   <div class="input-container">
+                       <input type="password" class="form-control" name="password2" placeholder="PASSWORD">
+
+                   </div>
+                   -->
+                   <div class="form-group my-3">
+
+                       <br>
+                       <button class="sign-in-btn" id="ov-btn-slide-close">Guardar Datos</button>
+
+               </form>
+                
+                
+                <div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+    ¡Éxito! <span th:text="${exito}"></span>
+</div>
+
+<div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+    Error ð <span th:text="${error}"></span>
+</div>
+        </body>
+
+    
+</html>

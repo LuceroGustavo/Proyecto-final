@@ -1,0 +1,576 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,400;1,500&display=swap'); 
+
+
+*{
+    
+    
+    font-family: 'Roboto' ,sans-serif;
+}
+
+body{
+    height: 80vh;
+    margin: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-image: url("/imagenes/x.jpg");
+  
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 650px 900px;
+    color:rgb(92, 23, 2); /*letras de todo lo que se ve*/
+}
+
+
+.logo {
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Permite que la altura se ajuste automáticamente manteniendo la proporción */
+    margin-bottom: -30px; /* Agrega un espacio entre el logo y los elementos del formulario */
+opacity: 0.7;
+border-radius:10px;
+}
+a{
+    color: aqua;
+    text-decoration:none;
+font-weight:500;
+display: inline-block;
+}
+.container-form{
+margin-top: 120px;
+    width: 110%;
+    height: 115vh;
+    display: flex;
+    justify-content: space-around;
+    transition: all .5s ease-in-out;
+
+}
+.welcome-back{
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+}
+.messege{
+padding: 1rem;
+}
+.messege h2{
+    font-size: 1.7rem;
+    padding: 1rem 0;
+    
+}
+.messege button {
+    padding: 1rem;
+    font-weight: 400;
+    background-color: #f3a91e;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: .9rem;
+    margin-top: 2rem;
+    transition: all .3s ease-in;
+    color: #fff;
+}
+.messege button:hover{
+    
+    background-color: rgb(236, 195, 12);
+
+ 
+}
+.formulario{
+   
+   border-radius: 50px;
+   height: 105%;
+    width: 440px; /*ancho de form*/
+    padding: 1rem;
+    margin: 2rem;
+    background-color: rgba(231, 87, 87, 0.602); /*color de fondo del form*/
+    text-align: center;
+    
+}
+
+
+
+select{
+    color: #f7f0ed; /*color de la letra*/
+    background-color: #f7735b;    /*color de fondo*/ 
+  border-radius: 10px;
+  height: 25px;
+}
+
+
+
+.create-account{
+    padding:2.7rem 0;
+    font-size: 1.7rem;
+    
+}
+.iconos{
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+
+}
+.border-icon{
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: solid thin white; /*linea de link fecbook,inst...*/
+    border-radius: 50%;
+    font-size: 1.5rem;
+    transition: all .3s ease-in;
+}
+.border-icon:hover{
+    background-color: #4a4aee; /*cuando pase el mause por el icono cambia*/
+    cursor: pointer;
+}
+.cuenta-gratis{
+    padding: 2rem 0;
+}
+/*
+.formulario input{    
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: white thin solid; /*de linea de form*/
+/*    
+text-align: center;
+    outline: none;
+    padding: .2rem 0;
+    font-size: .9rem;
+    color: rgb(42, 205, 241); /*color de letra de llenado*/
+  /*  cursor: pointer; 
+}
+*/
+
+
+.formulario input[type="button"]{
+    width: 60%;
+    margin: auto;
+    border: solid thin white; /*borde del cuadro*/
+    font-weight: 600;
+    margin-top: 3rem;
+    font-size: .8rem;
+    cursor: pointer;
+    color: white; /*boton registro*/
+}
+.sign-in{
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+.sign-in.active{
+    opacity: 1;
+    visibility: visible;
+    
+    
+
+
+
+    
+}
+.sign-up.active{
+    opacity: 0;
+
+    visibility: visible;
+
+
+
+  
+
+}
+
+
+
+
+
+
+
+
+
+:root {
+    --green: hsl(162, 45%, 56%);
+    --lead: hsl(162, 2%, 56%);
+    --blue: hsl(220, 85%, 57%);
+    --violet: hsl(272, 92%, 35%);
+    --text-white: hsl(0, 68%, 28%);
+    --text-light-gray: hsl(0, 55%, 37%);
+    --body-bg-color: hsl(200, 54%, 12%);
+    --glass-bg-color: hsla(0, 0%, 100%, 0.05);
+    --border-color: hsla(0, 0%, 100%, 0.25);
+    --blur: blur(10px);
+    --button-hover-color: hsla(0, 0%, 0%, 0.3);
+  }
+  
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+.body{
+
+background-color:green;
+color: var(--text-light-gray);
+font-family: 'Poppins',sans-serif;
+font-weight:300;
+line-height:1.s;
+overflow-x: hidden;
+}
+body::after,
+body::before{
+
+content:"";
+position: fixed;
+height:400px;
+width: 400px;
+border-radius:50%;
+z-index:-1;
+filter:blur(150px);
+opacity:0.5;
+
+}
+
+body::before{
+
+background-color: var(--blue);
+left:0;
+bottom: 0;
+transform:translate(-50%);
+}
+
+.body::after{
+
+background-color:var(--violet);
+right:0;
+top:0;
+transform: translate(50%);
+}
+
+a{
+text-decoration:none;
+font-weight:500;
+display: inline-block;
+}
+
+.gradient-text{
+background: linear-gradient(to right,var(--green), var(--lead));
+-webkit-background-clip:text;
+background-clip: text;
+color:transparent;
+
+}
+
+.form-mian{
+
+min-height:100vh;
+padding:60px 15px;
+display:flex;
+align-items:center ;
+justify-content:center;
+overflow:hidden;
+
+
+
+}
+
+
+.form-content{
+
+width:100%;
+max-width:450px;
+position:relative;
+z-index:1;
+}
+
+.form-content .circle-3,
+.form-content .circle-2,
+.form-content .circle-1{
+position:absolute;
+background:linear-gradient(to right, var(--blue),var(--violet));
+border-radius:50%;
+z-index:-1;
+}
+
+.form-content .circle1{
+height:120px;
+width:120px;
+left:0;
+top:10%;
+transform:translateX(-50%);
+}
+
+.form-content .circle2{
+height:80px;
+width:80px;
+right:0;
+bottom:0;
+transform:translate(20%,20%);
+}
+
+.form-content .circle3{
+height:50px;
+width:50px;
+right:10;
+top:10%;
+}
+
+
+.c4{
+    display: none;
+}
+
+.form-content .box{
+
+border-color: var(--glass-bg-color);
+border:1px solid var(--border-color);
+padding:40px 50px;
+border-radius: 20px;
+backdrop-filter:var(--blur)
+}
+
+.form-content h3{
+
+font-size:28px;
+text-align:center;
+line-height:1.2;
+font-weight:500;
+}
+
+.form-content form{
+
+margin:25px 0 20px;
+
+}
+
+.form-content .input-box{
+margin:25px;
+}
+
+.form-content ::placeholder{
+color:black;
+opacity:1;
+}
+
+.form-content .input-control{
+
+display:block;
+height:45px;
+width:100%;
+background-color:transparent;
+border:none;
+border-bottom: 1px solid var(--border-color);
+color:inherit;
+font-weight:inherit;
+font-family: inherit;
+font-size: 16px;
+}
+.form-content .input-control:focus{
+outline:none;
+}
+.form-content .input-link{
+margin-top:10px;
+text-align:right;
+}
+.form-content .btn{
+height:45px;
+width:100%;
+font-weight:500;
+text-transform:capitalize; /*primera letra se ponga en mayuscula*/
+font-family:inherit;
+cursor:pointer;
+border-radius:25px;
+user-select:none;
+background:linear-gradient(to right, var(--green),var(--lead));
+border:none;
+color:var(--text-white);
+position:relative;
+overflow:hidden;
+
+}
+.form-conten .btn::before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+height:100;
+width:100%;
+transition:background-color 0.5s ease;
+z-index:-1;
+}
+.form-content .btn:hover::before{
+background-color: var(--button-hover-color);
+}
+.form-content p{
+text-align:center;
+}
+
+@media(max-width:575px){
+    body::after,
+body::before{
+    height: 250px;
+    width: 250px;
+    filter: blur(100px);
+}
+.form-content .box{
+    padding: 30px;
+}
+.form-conten h3{
+    font-size: 24px;
+}
+}
+
+
+
+.c3{
+        margin-right: 10px; /* Espacio entre los inputs, ajusta según sea necesario */
+    color:#fff;
+       width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: white thin solid; /*de linea de form*/
+
+text-align: center;
+    outline: none;
+    padding: .2rem 0;
+    font-size: .9rem;
+    color: rgb(42, 205, 241); /*color de letra de llenado*/
+  cursor: pointer; 
+    
+}
+
+
+
+
+
+
+.input-container {
+    display: inline-block;
+}
+
+
+
+
+
+
+/*boton form*/
+
+
+
+.ov-btn-grow-spin {
+    background: rgb(243, 224, 54); /* color de fondo */
+    color: #4741d7; /* color de fuente */
+   
+    padding: 16px 20px;
+    border-radius: 80px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .ov-btn-grow-spin:hover {
+    color: #ce3521;/* color de fuente hover */
+  }
+  .ov-btn-grow-spin::after {
+    content: "";
+    background: #8fee69; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(0, 0) rotate(-180deg);
+    transition: all 0.3s ease;
+  }
+  .ov-btn-grow-spin:hover::after {
+    transition: all 0.3s ease-out;
+    transform: scale(1, 1) rotate(0deg);
+  }
+  
+  
+
+ /*boton de afuera*/
+
+
+ .sign-up-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: rgb(243, 224, 54);
+    color: #4741d7;
+    border: none;
+    border-radius: 25px; /*  forma del botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.sign-in-btn {
+    padding: 15px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color:  rgb(243, 224, 54);
+    color: #4741d7;
+    border: none;
+    border-radius: 25px; /*  la forma del botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+.sign-in-btn {
+
+    
+
+
+
+    padding: 15px 20px;
+    background-color: rgb(243, 224, 54);
+    color: #4741d7;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /*  transición al color de fondo */
+}
+
+.sign-in-btn:hover {
+    background-color: #69ec74; /*  color de fondo al pasar el ratón */
+    color: #ec4141;
+}
+
+
+#formulario5{
+    margin-left: 850px;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/comentario_list.css}" type="text/css" rel="stylesheet"></link>
+        <link th:href="@{/css/nav.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <header th:replace="/Fragments/navb :: navb"> </header>   
+   
+                            <div class="container">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nombre y Apellido</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Telefono</th>
+                                            <th scope="col">Rubro</th>
+                                            <th scope="col" sec:authorize="hasRole('ADMIN')">Editar Proveedor</th>
+                                            <th scope="col"sec:authorize="hasRole('ADMIN')">Eliminar Cliente</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody th:each="proveedor:${proveedores}">
+                                        <tr>
+                                            <th scope="row"> <img th:src="@{/imagen/perfil/__${proveedor.dni}__}" alt=""></th>
+                                            <th scope="row" th:text="${proveedor.nombre + ' ' + proveedor.apellido}"></th>
+                                            <td scope="row" th:text="${proveedor.email}"></td>
+                                            <td scope="row" th:text="${proveedor.telefono}"></td>
+                                            <td scope="row" th:text="${proveedor.rubro.nombreRubro}"></td>
+                                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/proveedor/modificar/__${proveedor.dni}__}"><button class="btn-outline-info">Modificar</button> </a></td>
+                                            <td><a sec:authorize="hasRole('ADMIN')" th:href="@{/proveedor/eliminar/__${proveedor.dni}__}"><button class="btn-outline-info">Eliminar</button> </a></td>
+
+                                        </tr>
+                                    </tbody> 
+
+
+                                </table>
+
+
+
+                            </div>
+
+
+                            <footer th:replace="/fragments/footer :: footer" ></footer> 
+                            </body>
+                            </html>

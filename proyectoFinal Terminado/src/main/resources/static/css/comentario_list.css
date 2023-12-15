@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+  }
+  body{
+   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(/imagenes/fondo-login.jpg) center center no-repeat;
+}
+tbody{
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin-right: 10px;
+    
+}
+
+.table {
+
+
+    position: relative;
+
+    border-collapse: separate; /* Separación de bordes */
+    border-spacing: 10px; /* Espacio entre celdas */
+    font-size: 25px; /* Tamaño de fuente */
+    border-radius: 10px; /* Radio de los bordes */
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo con transparencia */
+    color: #fff;
+}
+
+.table td, .table th {
+    padding: 8px;
+    height: 20px;
+    
+}
+th img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    
+    
+}
+
+.btn-outline-info {
+    color: #0dcaf0; 
+    border-color: #0dcaf0;
+    width:100px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: transparent;
+    font-family: sans-serif;
+    align-items: center;
+    font-size: 15px;
+
+
+}
+
+.btn-outline-info:hover {
+    background-color: #0dcaf0; 
+    color: black;
+    cursor: pointer;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 14px;
+    padding: 5px 3px;
+    text-align: center;
+    height: 30px;
+  }
+  
+  
+  footer a {
+      color: white;
+      text-decoration: none; 
+  }
+  
+  footer a:hover {
+      text-decoration: underline; 
+  }
+  
+  
+  footer a[href="#"] {
+      text-decoration: none; 
+      color: #6c757d; 
+      display: inline-block; 
+      transition: all 0.3s ease-in-out; 
+  }
+  
+  footer a[href="#"]:hover {
+      color: #000;
+      transform: translateY(-3px); 
+  }

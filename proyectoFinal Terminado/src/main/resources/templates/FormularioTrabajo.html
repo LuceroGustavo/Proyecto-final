@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+
+    <link rel="stylesheet" th:href="@{/css/solicitudDeTrabajo.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link th:href="@{/css/nav.css}" type="text/css" rel="stylesheet"></link>
+    </head>
+    <body>
+ <header th:replace="/Fragments/navb :: navb"> </header>
+
+
+
+
+
+
+                    <div class="container">
+                        <div class="solicitud">
+                            <h1><strong><u><center>Formulario de solicitud de trabajo</center></u></strong></h1>
+
+                            <div class="data">
+                                <div class="trabajo">
+
+                                    <center>   <h2><i><u>DETALLE DEL TRABAJO</u></i></h2>
+
+                                    <h1 th:if="${numero==1}" scope="row" th:switch="${trabajo.estadoTrabajo.toString()}" >
+
+                                        <h1 th:case="'PENDIENTE'" th:text="${trabajo.estadoTrabajo}" style="background-color:#26ade4; padding:5px; width:250px; height: 50px;" > </h1> 
+                                        <h1 th:case="'REVISION'" th:text="${trabajo.estadoTrabajo}" style="background-color:#66324c;padding: 5px; width:250px; height: 50px;" > </h1> 
+                                        <h1 th:case="'ACEPTADO'" th:text="${trabajo.estadoTrabajo}" style="background-color:green;padding:5px;width:250px; height: 50px;" > </h1> 
+                                        <h1 th:case="'CANCELADO'" th:text="${trabajo.estadoTrabajo}" style="background-color:red;padding:5px; width:250px; height: 50px;" > </h1> 
+                                        <h1 th:case="'FINALIZADO'" th:text="${trabajo.estadoTrabajo}" style="background-color:#154360; padding:5px; width:250px; height: 50px;" > </h1> 
+                                        <h1 th:case="'CALIFICADO'" th:text="${trabajo.estadoTrabajo}" style="background-color:goldenrod; padding:5px; width:250px; height: 50px;" > </h1> 
+                                    </h1>
+</center>
+                                    <!--   <p>Estado: <span th:text="${trabajo.estadoTrabajo}"></span></p> 
+                                       <p>Fecha de alta: <span th:text="${trabajo.fechaInicio}"></span></p> -->
+                                </div>
+                                <div class="cliente"  style="border: 2px solid #007bff; padding: 10px; border-radius: 10px; text-align: center;">
+                                    <center> <h2><b><i><u>SOLICITANTE:</u></i></b></h2></center>
+
+                                    <center>   <h2 th:text="${cliente.nombre}+' '+${cliente.apellido}"></h2> </center>
+
+                                    <center><p><strong><u>Dirección:</u></strong> <span th:text=" ${cliente.domicilio}"style="color: #181527;"></span></p></center>
+
+                                    <center>      <p><strong><u>Telefono:</u></strong> <span th:text="${cliente.telefono}"style="color: #181527;"></span></p> </center>
+                                </div>
+
+                                <div class="proveedor"  style="border: 2px solid #007bff; padding: 10px; border-radius: 10px; text-align: center;">
+
+                                    <center>   <h2><u>PROVEEDOR</u></h2>
+
+                                        <h2 id="proveedor" th:text="${proveedor.nombre}+' '+${proveedor.apellido}"></h2>
+
+                                        <p><strong><u>Rubro:</strong></u> <span th:text="${proveedor.rubro.nombreRubro}" style="color: #181527;"></span></p>
+
+                                        <p><strong><u>Dirección:</strong> </u><span  th:text="${proveedor.domicilio}"style="color: #181527;" ></span></p>
+
+                                        <p><strong><u>Telefono:</strong> </u><span th:text="${proveedor.telefono}"style="color: #181527;"></span></p>
+                                    </center>
+                                </div>
+
+                                <div class="proveedor"  th:if="${numero==0}">
+                                    <p ><strong><center>introduce aqui tu problema, lo mas detallado posible</center></strong></p>
+
+                                    <form  id="register-form" th:action="@{/trabajo/registro/}" method="POST">
+                                        <div class="descripcion">
+                                            <input hidden type="text"  name="dniProveedor" th:value="${proveedor.dni}">
+                                            <input hidden type="text"  name="dniCliente" th:value="${cliente.dni}">
+                                            <input name="detalleDeSolicitud" placeholder="Descripción del trabajo / Horarios disponibles" 
+                                                   minlength="15" maxlength="1000" 
+                                                   style="width: 100%; height: 100px" 
+                                                   type="text">
+                                        </div> 
+                                        <br>
+                                        <center>  
+                                            <button type="submit">enviar trabajo</button>
+                                        </center>  
+
+                                    </form>
+                                </div>
+
+
+
+                                <div th:if="${numero==1}"  >
+
+                                    <div class="proveedor"  style="border: 2px solid #007bff; padding: 10px; border-radius: 10px; text-align: center;">
+                                        <center>   <h2><u>DESCRIPCION DEL PROBLEMA</u></h2>
+
+                                            <p th:text="${trabajo.detalleDeSolicitud}"></p>
+                                    </div>
+
+                                    <div class="proveedor"  style="border: 2px solid #007bff; padding: 10px; border-radius: 10px; text-align: center;">
+                                        <center>   <h2><u>DESCRIPCION DE LA SOLUCION</u></h2>
+                                            <form id="register-form" th:action="@{/trabajo/presupuesto/}" method="POST">
+                                                <div class="descripcion">
+                                                    <input hidden type="number" name="idTrabajo" th:value="${trabajo.id}">
+
+                                                    <input name="respuestaProveedor" placeholder="INTRODICE AQUI LA SOLUCION" 
+                                                           minlength="15" maxlength="1000" 
+                                                           style="width: 100%; height: 100px" 
+                                                           type="text">
+                                                    <br>
+                                                    <label>GASTOS ADICIONALES</label>
+                                                    <br>
+                                                    <input  id="numero" type="number"  name="GastosAdicionales" >
+                                                    <br><br>
+                                                    <label>HORAS ESTIMADAS DE TRABAJO</label>
+                                                    <br>
+                                                    <input  id="numero1" type="number"  name="horasTrabajadasEstimadas">
+                                                </div>  
+                                                <br><br>
+                                                <button type="submit">enviar</button>
+                                            </form>   
+                                        </center> 
+                                    </div>
+                                </div>
+
+                                <div th:if="${numero==3}"  >
+
+                                    <div class="proveedor"  style="border: 2px solid #007bff; padding: 10px; border-radius: 10px; text-align: center;">
+                                        <center>   <h2><u>DESCRIPCION DEL PROBLEMA</u></h2>
+
+                                            <p th:text="${trabajo.detalleDeSolicitud}"></p>
+                                    </div>
+
+                                    <div class="proveedor"  style="border: 2px solid #007bff; padding: 10px; border-radius: 10px; text-align: center;">
+                                        <center>   <h2><u>DESCRIPCION DE LA SOLUCION</u></h2>
+                                            <p th:text="${trabajo.respuestaProveedor}"></p>
+
+                                            <center>   <h2><u>Gastos adicionales</u></h2>
+                                                <p th:text="${trabajo.GastosAdicionales}"></p>
+
+                                                <center>   <h2><u>Horas estimadas de trabajo</u></h2>
+
+                                                    <p th:text="${trabajo.horasTrabajoEstimadas}"></p>
+
+                                                    </div>
+
+
+
+                                                    <div class="proveedor"  style="border: 2px solid #007bff;background-color: #e67e22; padding: 10px; border-radius: 10px; text-align: center;">
+                                                        <center>   <h2><u>CALIFICACION y COMENTARIO</u></h2>
+                                                            <form id="register-form" th:action="@{/trabajo/comentar/}" method="POST">
+                                                                <div class="descripcion">
+                                                                    <input hidden type="number" name="idTrabajo" th:value="${trabajo.id}">
+
+                                                                    <input name="contenido" placeholder="INTRODICE AQUI EL COMENTARIO DEL TRABAJO" 
+                                                                           minlength="15" maxlength="1000" 
+                                                                           style="width: 100%; height: 100px" 
+                                                                           type="text">
+                                                                    <br>
+                                                                    <label>CALIFICACION</label>
+                                                                    <br>
+                                                                    <input  id="numero" type="number"  name="calificacion" >
+                                                                    <br><br>                                                   
+                                                                </div>  
+
+                                                                <button type="submit">enviar</button>
+                                                            </form>   
+                                                        </center> 
+                                                    </div>
+                                                    </div>
+
+
+
+                                                    </div>
+                                                    </div>
+                                                    <br><br><br><br><br><br><br><br>
+                                                    </div>
+
+                                                    <div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+                                                        ¡Éxito! <span th:text="${exito}"></span>
+                                                    </div>
+
+                                                    <div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+                                                        Error ð <span th:text="${error}"></span>
+                                                    </div>
+
+
+
+                                                    </body>
+                                                    </html>

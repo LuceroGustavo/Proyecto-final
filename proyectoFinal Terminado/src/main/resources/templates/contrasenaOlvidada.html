@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" th:href="@{/css/stiloContrasena.css}">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <section class="form-main">
+            <div class="form-content">
+                <div class="circle-1"></div>
+                <div class="circle-2"></div>
+                <div class="circle-3"></div>
+                <div class="box">
+                    <h3>contraseña olvidada</h3>
+                    <div th:if="${numero == null}">
+                        <h2>- PASO 1</h2>
+                        <strong>  <p>Scanear el QR</p></strong>
+
+
+                        <img class="qr-code" th:src="@{/imagenes/qr.png}" alt="Código QR" >
+
+                       
+                        <br>
+                        <h2>- PASO 2</h2>
+                        <h2>Ingresa tu Email</h2>
+
+                        <form  th:action="@{/token}" method="POST">
+                            <div class="input-box">
+                                <input type="text" placeholder="email" name="email" class="input-control">
+                            </div>
+
+                            <button type="submit" class="btn">Enviar Enlace</button>
+
+
+                        </form>
+                        <p> no tienes una cuenta <a th:href="@{/registrar}" class="gradient-text">Crear Cuenta</a></p>
+                    </div>
+
+
+
+                    <div th:if="${numero == 1}">
+                        <h2>- PASO 3</h2>
+                        <h1 th:text=" 'Bienvenido  '+ ${persona.nombre}"></h1>
+                        
+                        <strong>  <h4>INGRESA EL CODIGO ENVIADO A TU NUMERO</h4></strong>
+
+                       
+
+                  <form  th:action="@{/cambioContraseña}" method="POST">
+                            <div class="input-box">
+                                <input type="text" placeholder="CODIGO" name="token" class="input-control" th:value="${token}">
+                                <br>
+                                 <br>
+                                <label>Ingresa tu nueva contraseña</label>
+                                <input type="password"  name="password" class="input-control">
+                                  <br>
+                                   <br>
+                                   <label>Repite la contraseña</label>
+                                <input type="password"   name="password2" class="input-control">
+                                <input hidden name="email" th:value="${persona.email}">
+                            </div>
+
+                            <button type="submit" class="btn">RECUPERAR CONTRASEÑA</button>
+                             <br> <br>
+                            
+  <a th:href="@{/recuperar}"  class="btn">VOLVER A ENVIAR TOKEN</a>
+
+                        </form>
+                      
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <div th:if="${exito != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #4CAF50; color: white; font-weight: bold; z-index: 1000;">
+            ¡Éxito! <span th:text="${exito}"></span>
+        </div>
+
+        <div th:if="${error != null}" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 10px 20px; border-radius: 5px; background-color: #F44336; color: white; font-weight: bold; z-index: 1000;">
+            Error <span th:text="${error}"></span>
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
+css
+
+
+
+
